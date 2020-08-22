@@ -12,7 +12,7 @@
     "url": "https://github.com/qgolsteyn/ui-census"
   },
   "scripts": {
-    "build": "oao run-script build",
+    "build": "tsc --build",
     "test": "jest --config=jest.config.json",
     "prerelease": "oao run-script build && oao prepublish"
   },

@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "module": "amd",
+    "lib": ["ES6", "ES2016.Array.Include", "DOM"],
+    "target": "es5",
+    "rootDir": ".",
+
+    "jsx": "react",
+
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "noEmitOnError": true,
+    "moduleResolution": "node",
+
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictPropertyInitialization": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "skipLibCheck": true,
+
+    "alwaysStrict": true,
+    "preserveConstEnums": true,
+
+    "esModuleInterop": true
+  },
+  "files": []
+}
