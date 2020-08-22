@@ -16,7 +16,7 @@
   "scripts": {
     "prepublishOnly": "jest && tsc",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --config=../../jest.config.json"
   },
   "license": "MIT",
   "files": [

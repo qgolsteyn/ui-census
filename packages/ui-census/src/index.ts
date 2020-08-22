@@ -1,7 +1,15 @@
 import type { Dict, Selector, CensusResolver, CensusLibrary } from "./types";
 import { createBaseProxyHandler } from "./proxy";
 
-interface AdditionalProperties<Library> {
+export type {
+  Dict,
+  Selector,
+  PropResolver,
+  CensusResolver,
+  CensusLibrary,
+} from "./types";
+
+export interface AdditionalProperties<Library> {
   element: HTMLElement;
   content: Library;
 }
@@ -98,8 +106,8 @@ const createSelectorProxy = (
 };
 
 const createDOMAdapter = <
-  Selectors extends { [key: string]: Selector<HTMLElement> },
-  CensusResolvers extends { [key: string]: CensusResolver<HTMLElement> },
+  Selectors extends Dict<Selector<HTMLElement>>,
+  CensusResolvers extends Dict<CensusResolver<HTMLElement>>,
   Keys extends keyof Selectors & keyof CensusResolvers
 >(
   selectors: Selectors,

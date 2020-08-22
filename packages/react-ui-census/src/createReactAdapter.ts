@@ -3,26 +3,18 @@ import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 
 import createDOMAdapter from "ui-census";
-import type {
-  UIAdapterSelectors,
-  UIAdapterPropsObjects,
-  UIAdapterImplementation,
-} from "ui-census/lib/types";
+import type { Dict, Selector, CensusResolver } from "ui-census";
 
 const createReactAdapter = <
-  S extends UIAdapterSelectors<HTMLElement>,
-  P extends UIAdapterPropsObjects<HTMLElement>,
-  K extends keyof S & keyof P
+  Selectors extends Dict<Selector<HTMLElement>>,
+  CensusResolvers extends Dict<CensusResolver<HTMLElement>>
 >(
-  selectors: S,
-  props: P
+  selectors: Selectors,
+  props: CensusResolvers
 ) => {
   const adapter = createDOMAdapter(selectors, props);
 
-  return (
-    reactElement: React.ReactElement,
-    container: HTMLDivElement
-  ): UIAdapterImplementation<HTMLElement, S, P, K> => {
+  return (reactElement: React.ReactElement, container: HTMLDivElement) => {
     act(() => {
       ReactDOM.render(reactElement, container);
     });
