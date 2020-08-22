@@ -14,7 +14,7 @@
   "scripts": {
     "build": "oao run-script build",
     "test": "oao run-script test",
-    "prepublish": "oao run-script build && oao prepublish",
+    "prerelease": "oao run-script build && oao prepublish",
     "release": "oao run-script test && oao publish"
   },
   "workspaces": [
