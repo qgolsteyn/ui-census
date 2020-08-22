@@ -12,9 +12,10 @@
     "url": "https://github.com/qgolsteyn/ui-census"
   },
   "scripts": {
-    "ui-census": "yarn workspace ui-census",
-    "build": "yarn workspace ui-census tsc",
-    "test": "yarn workspace ui-census jest"
+    "build": "oao run-script build",
+    "test": "oao run-script test",
+    "prepublish": "oao run-script build && oao prepublish",
+    "publish": "oao run-script test && oao publish"
   },
   "workspaces": [
     "packages/ui-census"
