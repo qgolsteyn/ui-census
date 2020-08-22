@@ -1,6 +1,6 @@
 {
   "name": "ui-census",
-  "version": "0.0.2",
+  "version": "0.0.0",
   "description": "UI Census is a Javascript library for testing user interfaces",
   "keywords": [
     "UI",
@@ -14,8 +14,6 @@
     "url": "https://golsteyn.com"
   },
   "scripts": {
-    "prepare": "yarn build",
-    "prepublishOnly": "yarn test",
     "build": "tsc",
     "test": "jest"
   },
