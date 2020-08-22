@@ -15,7 +15,7 @@
     "build": "oao run-script build",
     "test": "oao run-script test",
     "prepublish": "oao run-script build && oao prepublish",
-    "publish": "oao run-script test && oao publish"
+    "release": "oao run-script test && oao publish"
   },
   "workspaces": [
     "packages/ui-census"
