@@ -4,11 +4,9 @@
     "outDir": "./lib/",
     "rootDir": "./src",
     "baseUrl": ".",
-    "paths": {
-      "*": ["../*/src"]
-    }
+    "tsBuildInfoFile": ".tsc/.tsbuildinfo"
   },
   "references": [{ "path": "../ui-census" }],
   "include": ["src"],
-  "exclude": ["lib", "**/__test__"]
+  "exclude": ["**/__test__"]
 }

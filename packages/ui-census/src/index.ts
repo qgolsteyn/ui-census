@@ -2,6 +2,7 @@ import type { Dict, Selector, CensusResolver, CensusLibrary } from "./types";
 import { createBaseProxyHandler } from "./proxy";
 
 export type {
+  Index,
   Dict,
   Selector,
   PropResolver,

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "pretty": true,
-    "module": "amd",
+    "module": "CommonJS",
     "lib": ["ES6", "ES2016.Array.Include", "DOM"],
     "target": "es5",
     "rootDir": ".",
@@ -19,15 +19,19 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictPropertyInitialization": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
 
     "skipLibCheck": true,
 
     "alwaysStrict": true,
     "preserveConstEnums": true,
 
-    "esModuleInterop": true
+    "esModuleInterop": true,
+
+    "baseUrl": "packages",
+
+    "paths": {
+      "*": ["*"]
+    }
   },
   "files": []
 }
