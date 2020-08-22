@@ -1,5 +1,5 @@
 {
-  "name": "ui-census",
+  "name": "react-ui-census",
   "version": "0.0.5",
   "description": "UI Census is a Javascript library for testing user interfaces",
   "keywords": [
@@ -24,5 +24,16 @@
   ],
   "repository": {
     "url": "https://github.com/qgolsteyn/ui-census"
+  },
+  "dependencies": {
+    "ui-census": "^0.0.4"
+  },
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

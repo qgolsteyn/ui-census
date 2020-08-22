@@ -14,11 +14,11 @@
   "scripts": {
     "build": "oao run-script build",
     "test": "oao run-script test",
-    "prerelease": "oao run-script build && oao prepublish",
-    "release": "oao run-script test && oao publish"
+    "prerelease": "oao run-script build && oao prepublish"
   },
   "workspaces": [
-    "packages/ui-census"
+    "packages/ui-census",
+    "packages/react-ui-census"
   ],
   "devDependencies": {
     "@babel/core": "^7.11.1",
