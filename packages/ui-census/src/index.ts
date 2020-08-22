@@ -1,139 +1,95 @@
-import type {
-  UIAdapterSelectors,
-  UIAdapterPropsObjects,
-  UIAdapterImplementation,
-  UIAdapterProps,
-  UIAdapterSelector,
-  Props,
-} from "./types";
+import type { Dict, Selector, CensusResolver, CensusLibrary } from "./types";
+import { createBaseProxyHandler } from "./proxy";
 
-const getPropValue = (
-  props: any,
-  key: string,
-  elements: Element | Element[]
-) => {
-  if (Array.isArray(elements) && elements.length > 1) {
-    throw new Error("Selector returned more than one element");
-  } else if (Array.isArray(elements)) {
-    if (key === "element") {
-      return elements[0];
+interface AdditionalProperties<Library> {
+  element: HTMLElement;
+  content: Library;
+}
+
+const additionalProperties = (
+  selectors: Dict<Selector>,
+  props: Dict<CensusResolver>
+): CensusResolver<HTMLElement> => ({
+  element: (element) => element,
+  content: createDOMAdapter(selectors, props),
+});
+
+const asArray = <P>(element: P | P[]): P[] =>
+  Array.isArray(element) ? element : [element];
+
+const guardSingle = <P>(element: P | P[]) => {
+  if (Array.isArray(element)) {
+    if (element.length === 0) {
+      throw new Error("Selector return no elements");
+    } else if (element.length > 1) {
+      throw new Error("Selector returned more than one element");
     } else {
-      return props[key](elements[0]);
+      return element[0];
     }
   } else {
-    if (key === "element") {
-      return elements;
-    } else {
-      return props[key](elements);
-    }
+    return element;
   }
 };
 
-const createPropProxy = <P extends UIAdapterProps<HTMLElement>>(props: P) => (
-  element: HTMLElement
-) => {
-  const handler: ProxyHandler<Props<HTMLElement, P>> = {
-    ownKeys: () => {
-      return Object.keys(props);
-    },
-    has(_, p) {
-      return p in props;
-    },
-    getOwnPropertyDescriptor: (_, p) => {
-      if (p in props) {
-        return {
-          enumerable: true,
-          configurable: true,
-          writable: false,
-          value: getPropValue(props, p as string, element),
-        };
-      }
-
-      return undefined;
-    },
-    defineProperty: () => {
-      return false;
-    },
+const createPropProxy = (
+  library: [Dict<Selector>, Dict<CensusResolver>],
+  props: CensusResolver<HTMLElement>
+) => (element: HTMLElement) => {
+  const combinedProps = { ...props, ...additionalProperties(...library) };
+  const handler: ProxyHandler<Dict> = {
+    ...createBaseProxyHandler(Reflect.ownKeys(props)),
     get: (obj, p) => {
-      if (typeof p === "string") {
-        if (p in props || p === "element") {
-          return getPropValue(props, p, element);
-        } else {
-          return obj[p];
-        }
+      if (typeof p !== "symbol" && p in combinedProps) {
+        return combinedProps[p](element);
       } else {
-        return undefined;
+        // @ts-expect-error
+        // Typescript does not allow us to index a dict with a symbol. That's
+        // not correct.
+        return obj[p];
       }
     },
   };
 
-  return new Proxy({} as any, handler);
+  return new Proxy({}, handler);
 };
 
-const createSelectorProxy = <
-  S extends UIAdapterSelector<HTMLElement>,
-  P extends UIAdapterProps<HTMLElement>
->(
-  selector: S,
-  props: P
-) => (target: HTMLElement) => {
-  const handler: ProxyHandler<Props<HTMLElement, P>> = {
-    ownKeys: () => {
-      return Object.keys(props);
-    },
-    has: (_, p) => {
-      return p in props;
-    },
-    getOwnPropertyDescriptor: (_, p) => {
-      if (p in props) {
-        const elements = selector(target);
-        return {
-          enumerable: true,
-          configurable: true,
-          value: getPropValue(props, p as string, elements),
-        };
-      }
+const createQuery = (
+  library: [Dict<Selector>, Dict<CensusResolver>],
+  target: HTMLElement,
+  selector: Selector,
+  props: CensusResolver<HTMLElement>
+) => (query: string | Dict) => {
+  if (typeof query === "string") {
+    const element = guardSingle(selector(target, { id: query }));
+    return createPropProxy(library, props)(element);
+  } else if (typeof query === "object" && !Array.isArray(query)) {
+    return asArray(selector(target, query)).map((element) =>
+      createPropProxy(library, props)(element)
+    );
+  } else {
+    throw new Error("Unexpected query type");
+  }
+};
 
-      return undefined;
-    },
-    defineProperty: () => {
-      return false;
-    },
+const createSelectorProxy = (
+  library: [Dict<Selector>, Dict<CensusResolver>],
+  selector: Selector,
+  props: CensusResolver<HTMLElement>
+) => (target: HTMLElement) => {
+  const combinedProps = { ...props, ...additionalProperties(...library) };
+  const handler: ProxyHandler<Dict> = {
+    ...createBaseProxyHandler(Reflect.ownKeys(props)),
     get: (obj, p) => {
       if (p === "q") {
-        return (query: any) => {
-          if (typeof query === "string") {
-            const elements = selector(target, { id: query });
-            if (Array.isArray(elements) && elements.length > 1) {
-              throw new Error("Selector returned more than one element");
-            } else if (Array.isArray(elements)) {
-              return createPropProxy(props)(elements[0]);
-            } else {
-              return createPropProxy(props)(elements);
-            }
-          } else if (typeof query === "object" && !Array.isArray(query)) {
-            const elements = selector(target, query);
-
-            if (Array.isArray(elements)) {
-              return elements.map((element) => createPropProxy(props)(element));
-            } else {
-              return [elements].map((element) =>
-                createPropProxy(props)(element)
-              );
-            }
-          } else {
-            throw new Error("Unexpected query type.");
-          }
-        };
-      } else if (typeof p === "string") {
-        if (p in props || p === "element") {
-          const elements = selector(target);
-          return getPropValue(props, p, elements);
-        } else {
-          return obj[p];
-        }
+        return createQuery(library, target, selector, props);
+      } else if (typeof p !== "symbol" && p in combinedProps) {
+        const element = guardSingle(selector(target));
+        return combinedProps[p](element);
       } else {
-        return obj[p as any];
+        // @ts-expect-error
+        // Typescript does not allow us to index a dict with a symbol. That's
+        // not correct.
+        return obj[p];
       }
     },
   };
@@ -142,25 +98,33 @@ const createSelectorProxy = <
 };
 
 const createDOMAdapter = <
-  S extends UIAdapterSelectors<HTMLElement>,
-  P extends UIAdapterPropsObjects<HTMLElement>,
-  K extends keyof S & keyof P
+  Selectors extends { [key: string]: Selector<HTMLElement> },
+  CensusResolvers extends { [key: string]: CensusResolver<HTMLElement> },
+  Keys extends keyof Selectors & keyof CensusResolvers
 >(
-  selectors: S,
-  props: P
-): ((target: HTMLElement) => UIAdapterImplementation<HTMLElement, S, P, K>) => (
-  target: HTMLElement
-) => {
+  selectors: Selectors,
+  props: CensusResolvers
+) => (target: HTMLElement) => {
+  type Library = CensusLibrary<
+    Selectors,
+    CensusResolvers,
+    Keys,
+    AdditionalProperties<Library>
+  >;
   const selectorKeys = Object.keys(selectors);
   const propKeys = Object.keys(props);
   const keys = selectorKeys.filter((key) => propKeys.includes(key));
 
   const adapter = {} as any;
   for (const key of keys) {
-    adapter[key] = createSelectorProxy(selectors[key], props[key])(target);
+    adapter[key] = createSelectorProxy(
+      [selectors, props],
+      selectors[key],
+      props[key]
+    )(target);
   }
 
-  return adapter;
+  return adapter as Library;
 };
 
 export default createDOMAdapter;

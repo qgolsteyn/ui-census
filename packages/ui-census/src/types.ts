@@ -1,44 +1,61 @@
-export type UIAdapterSelector<E> = (
-  element: E,
-  query?: {
-    [key: string]: string | number | boolean;
-  }
-) => E | E[];
-export type UIAdapterSelectors<E> = {
-  [key: string]: UIAdapterSelector<E>;
-};
+export type Index = string | number | symbol;
+export type Dict<Value = any> = { [key in Index]: Value };
 
-export type Query<E, T extends UIAdapterSelector<E>> = Parameters<T>[1];
+export type Selector<ElementType = any> = (
+  element: ElementType,
+  filter?: Dict<string | number | boolean>
+) => ElementType | ElementType[];
 
-export type UIAdapterProps<E> = { [key: string]: (element: E) => any };
-export type UIAdapterPropsObjects<E> = {
-  [key: string]: UIAdapterProps<E>;
-};
+type GetFilterArg<Selector extends (...args: any) => any> = Parameters<
+  Selector
+>[1];
+type GetFilterOptions<Selector extends (...args: any) => any> = GetFilterArg<
+  Selector
+> extends {}
+  ? GetFilterArg<Selector>
+  : {};
 
-export type Props<E, T extends UIAdapterProps<E>> = {
-  [P in keyof T]: ReturnType<T[P]>;
-};
+export type PropResolver<ElementType = any> = (element: ElementType) => any;
+export type CensusResolver<ElementType = any> = Dict<PropResolver<ElementType>>;
 
-export type UIAdapterElement<E, O extends UIAdapterProps<E>> = Props<E, O> & {
-  element: E;
-};
-export type QueryById<E, O extends UIAdapterProps<E>> = {
-  q: (query: string) => UIAdapterElement<E, O>;
-};
-export type QueryByProp<
-  E,
-  O extends UIAdapterProps<E>,
-  Q extends UIAdapterSelector<E>
+type GetPropType<PropResolver extends (...args: any) => any> = ReturnType<
+  PropResolver
+>;
+
+type QueryById<
+  Props extends { [key: string]: any },
+  NativeProperties extends Dict
 > = {
-  q: (query: Partial<Query<E, Q>>) => Array<UIAdapterElement<E, O>>;
+  q: (id: string) => Props & NativeProperties;
 };
-export type UIAdapterImplementation<
-  E,
-  S extends UIAdapterSelectors<E>,
-  P extends UIAdapterPropsObjects<E>,
-  T extends keyof S & keyof P
+type QueryByFilter<
+  Filter extends { [key: string]: any },
+  Props extends { [key: string]: any },
+  NativeProperties extends Dict
+> = { q: (filter?: Partial<Filter>) => Array<Props & NativeProperties> };
+
+export type CensusObject<
+  Filter extends Dict,
+  Props extends Dict,
+  NativeProperties extends Dict
+> = Props &
+  NativeProperties &
+  QueryById<Props, NativeProperties> &
+  QueryByFilter<Filter, Props, NativeProperties>;
+
+export type CensusLibrary<
+  Selectors extends Dict<Selector>,
+  CensusResolvers extends Dict<CensusResolver>,
+  Keys extends keyof Selectors & keyof CensusResolvers,
+  NativeProperties extends Dict = {}
 > = {
-  [K in T]: UIAdapterElement<E, P[K]> &
-    QueryById<E, P[K]> &
-    QueryByProp<E, P[K], S[K]>;
+  [Key in Keys]: CensusObject<
+    GetFilterOptions<Selectors[Key]>,
+    {
+      [PropKey in keyof CensusResolvers[Key]]: GetPropType<
+        CensusResolvers[Key][PropKey]
+      >;
+    },
+    NativeProperties
+  >;
 };

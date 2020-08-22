@@ -2,16 +2,14 @@ import createDOMAdapter from "../src";
 
 const b = createDOMAdapter(
   {
-    div: (target, query: { id?: string } = {}) => {
-      const elements = Array.from(target.querySelectorAll("div"));
+    div: (target, query?: { id?: string }) => {
+      let elements = Array.from(target.querySelectorAll("div"));
 
-      return elements.filter((element) => {
-        if (query.id !== undefined) {
-          return element.id === query.id;
-        } else {
-          return true;
-        }
-      });
+      if (query && query.id !== undefined) {
+        elements = elements.filter((node) => node.id === query.id);
+      }
+
+      return elements;
     },
   },
   {
@@ -119,4 +117,26 @@ test("it throws when accessing id query where multiple elements are present", ()
   }
 
   expect(() => doc.div.q("test").text).toThrow();
+});
+
+test("it allows recursive use of the library", () => {
+  const parent = document.createElement("div");
+  parent.id = "test";
+  document.body.append(parent);
+
+  const child = document.createElement("div");
+  child.id = "target";
+  child.textContent = "Correct";
+  parent.append(child);
+
+  const decoy = document.createElement("div");
+  decoy.id = "target";
+  decoy.textContent = "Incorrect";
+  document.body.append(decoy);
+
+  expect(doc.div.q({ id: "target" }).length).toBe(2);
+
+  const elements = doc.div.q("test").content.div.q({ id: "target" });
+  expect(elements[0].text).toBe("Correct");
+  expect(elements.length).toBe(1);
 });
