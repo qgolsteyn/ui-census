@@ -1,6 +1,6 @@
 {
   "name": "ui-census",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "UI Census is a Javascript library for testing user interfaces",
   "keywords": [
     "UI",
