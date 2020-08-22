@@ -14,7 +14,7 @@
   "scripts": {
     "build": "tsc --build",
     "test": "jest --config=jest.config.json",
-    "prerelease": "oao run-script build && oao prepublish"
+    "prerelease": "yarn build && oao prepublish"
   },
   "workspaces": [
     "packages/ui-census",
