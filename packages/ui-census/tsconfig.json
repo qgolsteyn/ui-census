@@ -5,6 +5,5 @@
     "rootDir": "./src",
     "tsBuildInfoFile": ".tsc/.tsbuildinfo"
   },
-  "include": ["src"],
-  "exclude": ["**/__test__"]
+  "include": ["src"]
 }

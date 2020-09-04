@@ -1,18 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`it supports snapshot testing 1`] = `
-Object {
-  "text": "Test 4",
-}
-`;
-
-exports[`it supports snapshot testing 2`] = `
-Object {
-  "text": "Test 4",
-}
-`;
-
-exports[`it supports snapshot testing 3`] = `
 Array [
   Object {
     "text": "Test 4",

@@ -1,26 +1,16 @@
 import React from "react";
 import { createReactAdapter } from "..";
 
-const b = createReactAdapter(
-  {
-    div: (target, query: { id?: string } = {}) => {
-      const elements = Array.from(target.querySelectorAll("div"));
+const b = createReactAdapter({
+  div: {
+    _selector: (target) => {
+      let elements = Array.from(target.querySelectorAll("div"));
 
-      return elements.filter((element) => {
-        if (query.id !== undefined) {
-          return element.id === query.id;
-        } else {
-          return true;
-        }
-      });
+      return elements;
     },
+    text: (element) => element.textContent,
   },
-  {
-    div: {
-      text: (element) => element.textContent,
-    },
-  }
-);
+});
 
 let container: HTMLDivElement | null;
 
@@ -37,19 +27,7 @@ afterEach(() => {
 test("it handles a basic query", () => {
   const doc = b(<div>Test 1</div>, container!);
 
-  expect(doc.div.text).toBe("Test 1");
-});
-
-test("it handles a basic query by id", () => {
-  const doc = b(<div id="test">Test 2</div>, container!);
-
-  expect(doc.div.q("test").text).toBe("Test 2");
-});
-
-test("it handles a basic query by prop", () => {
-  const doc = b(<div id="test">Test 3</div>, container!);
-
-  expect(doc.div.q({ id: "test" })[0].text).toBe("Test 3");
+  expect(doc.div[0].text).toBe("Test 1");
 });
 
 test("it handles a query by prop with mapping", () => {
@@ -62,39 +40,26 @@ test("it handles a query by prop with mapping", () => {
     container!
   );
 
-  expect(doc.div.q({}).map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
+  expect(doc.div.map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
 });
 
 test("it supports snapshot testing", () => {
   const doc = b(<div id="test">Test 4</div>, container!);
 
   expect(doc.div).toMatchSnapshot();
-  expect(doc.div.q("test")).toMatchSnapshot();
-  expect(doc.div.q({ id: "test" })).toMatchSnapshot();
 });
 
-test("it throws when accessing default query where multiple elements are present", () => {
+test("it supports snapshot testing with multiple elements", () => {
   const doc = b(
     <>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
+      <div id="test">Test 1</div>
+      <div id="test">Test 2</div>
+      <div id="test">
+        Test 3 and <div id="test">Test 4</div>
+      </div>
     </>,
     container!
   );
 
-  expect(() => doc.div.text).toThrow();
-});
-
-test("it throws when accessing id query where multiple elements are present", () => {
-  const doc = b(
-    <>
-      <div>1</div>
-      <div>2</div>
-      <div>3</div>
-    </>,
-    container!
-  );
-
-  expect(() => doc.div.q("test").text).toThrow();
+  expect(doc.div).toMatchSnapshot();
 });

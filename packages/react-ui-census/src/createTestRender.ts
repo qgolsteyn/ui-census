@@ -2,17 +2,12 @@ import type React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import createDOMAdapter from "ui-census";
-import type { Dict, Selector, CensusResolver } from "ui-census";
+import { createDOMAdapter, CensusDefinition } from "ui-census";
 
-const createTestRender = <
-  Selectors extends Dict<Selector<HTMLElement>>,
-  CensusResolvers extends Dict<CensusResolver<HTMLElement>>
->(
-  selectors: Selectors,
-  props: CensusResolvers
+const createTestRender = <Definition extends CensusDefinition<HTMLElement>>(
+  definition: Definition
 ) => {
-  const adapter = createDOMAdapter(selectors, props);
+  const adapter = createDOMAdapter(definition);
 
   let container: HTMLDivElement | null;
 

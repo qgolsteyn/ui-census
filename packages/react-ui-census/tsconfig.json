@@ -7,6 +7,5 @@
     "tsBuildInfoFile": ".tsc/.tsbuildinfo"
   },
   "references": [{ "path": "../ui-census" }],
-  "include": ["src"],
-  "exclude": ["**/__test__"]
+  "include": ["src"]
 }
