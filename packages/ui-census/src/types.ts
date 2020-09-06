@@ -6,13 +6,31 @@ export type CensusDefinition<ElementType> = Dict<{
   [key: string]: (target: ElementType) => any;
 }>;
 
+export type CensusDefinitionAsync<ElementType> = Dict<{
+  _selector: (target: ElementType) => Promise<ElementType[]>;
+  [key: string]: (target: ElementType) => any;
+}>;
+
 export type CensusObject<Definition extends CensusDefinition<any>> = {
   [DefinitionKey in keyof Definition]: Array<
     {
       [QueryKey in Exclude<
         keyof Definition[DefinitionKey],
         "_selector"
-      >]: Definition[DefinitionKey][QueryKey];
+      >]: ReturnType<Definition[DefinitionKey][QueryKey]>;
     }
+  >;
+};
+
+export type CensusObjectAsync<Definition extends CensusDefinitionAsync<any>> = {
+  [DefinitionKey in keyof Definition]: Promise<
+    Array<
+      {
+        [QueryKey in Exclude<
+          keyof Definition[DefinitionKey],
+          "_selector"
+        >]: ReturnType<Definition[DefinitionKey][QueryKey]>;
+      }
+    >
   >;
 };
