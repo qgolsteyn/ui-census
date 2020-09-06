@@ -1,28 +1,6 @@
 import { Dict, CensusDefinitionAsync, CensusObjectAsync } from "../types";
 import { createBaseProxyHandler } from "./utils/proxy";
 
-const createQueryProxy = <ElementType>(
-  element: ElementType,
-  queryResolver: Dict<(element: ElementType) => any>
-) => {
-  const handler: ProxyHandler<Dict> = {
-    ...createBaseProxyHandler(
-      Reflect.ownKeys(queryResolver).filter(
-        (key) => typeof key !== "string" || key[0] != "_"
-      )
-    ),
-    get: (_, p) => {
-      if (typeof p === "string" && p[0] !== "_" && p in queryResolver) {
-        return queryResolver[p](element);
-      } else {
-        return undefined;
-      }
-    },
-  };
-
-  return new Proxy({} as any, handler);
-};
-
 const createAsyncAdapter = <
   ElementType,
   Definition extends CensusDefinitionAsync<ElementType>
@@ -33,8 +11,18 @@ const createAsyncAdapter = <
     ...createBaseProxyHandler(Reflect.ownKeys(definition)),
     get: async (obj, p) => {
       if (typeof p !== "symbol" && p in definition) {
-        return (await definition[p]._selector(target)).map((element) =>
-          createQueryProxy(element, definition[p])
+        return await Promise.all(
+          (await definition[p]._selector(target)).map(async (element) => {
+            const out: any = {};
+            for (const key in definition[p]) {
+              if (key[0] === "_") {
+                continue;
+              } else {
+                out[key] = await definition[p][key](element);
+              }
+            }
+            return out;
+          })
         );
       } else {
         // @ts-expect-error

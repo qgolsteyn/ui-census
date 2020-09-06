@@ -1,4 +1,5 @@
 import { createDOMAdapter } from "../..";
+import { query } from "../../helpers/query";
 
 const b = createDOMAdapter({
   div: {
@@ -52,4 +53,16 @@ test("it supports snapshot testing", () => {
   document.body.append(div);
 
   expect(doc.div).toMatchSnapshot();
+});
+
+test("it handles a simple query", () => {
+  for (let i = 1; i <= 3; i++) {
+    const div = document.createElement("div");
+    div.textContent = String(i);
+    document.body.append(div);
+  }
+
+  const match = query(doc.div).match({ text: "2" }).single();
+
+  expect(match).toEqual({ text: "2" });
 });

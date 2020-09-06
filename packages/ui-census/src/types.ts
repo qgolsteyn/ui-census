@@ -22,6 +22,8 @@ export type CensusObject<Definition extends CensusDefinition<any>> = {
   >;
 };
 
+type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
+
 export type CensusObjectAsync<Definition extends CensusDefinitionAsync<any>> = {
   [DefinitionKey in keyof Definition]: Promise<
     Array<
@@ -29,7 +31,7 @@ export type CensusObjectAsync<Definition extends CensusDefinitionAsync<any>> = {
         [QueryKey in Exclude<
           keyof Definition[DefinitionKey],
           "_selector"
-        >]: ReturnType<Definition[DefinitionKey][QueryKey]>;
+        >]: ThenArg<ReturnType<Definition[DefinitionKey][QueryKey]>>;
       }
     >
   >;
