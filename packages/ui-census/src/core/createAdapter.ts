@@ -1,4 +1,4 @@
-import { Dict, CensusDefinitionAsync, CensusObjectAsync } from "./types";
+import { Dict, CensusObject, CensusDefinition } from "../types";
 import { createBaseProxyHandler } from "./utils/proxy";
 
 const createQueryProxy = <ElementType>(
@@ -23,19 +23,19 @@ const createQueryProxy = <ElementType>(
   return new Proxy({} as any, handler);
 };
 
-const createAsyncAdapter = <
+const createAdapter = <
   ElementType,
-  Definition extends CensusDefinitionAsync<ElementType>
+  Definition extends CensusDefinition<ElementType>
 >(
   definition: Definition
 ) => (target: ElementType) => {
   const handler: ProxyHandler<Dict> = {
     ...createBaseProxyHandler(Reflect.ownKeys(definition)),
-    get: async (obj, p) => {
+    get: (obj, p) => {
       if (typeof p !== "symbol" && p in definition) {
-        return (await definition[p]._selector(target)).map((element) =>
-          createQueryProxy(element, definition[p])
-        );
+        return definition[p]
+          ._selector(target)
+          .map((element) => createQueryProxy(element, definition[p]));
       } else {
         // @ts-expect-error
         // Typescript does not allow us to index a dict with a symbol. That's
@@ -45,7 +45,7 @@ const createAsyncAdapter = <
     },
   };
 
-  return new Proxy({} as any, handler) as CensusObjectAsync<Definition>;
+  return new Proxy({} as any, handler) as CensusObject<Definition>;
 };
 
-export default createAsyncAdapter;
+export default createAdapter;

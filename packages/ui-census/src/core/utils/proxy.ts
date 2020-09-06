@@ -1,4 +1,4 @@
-import type { Dict, Index } from "../types";
+import type { Dict, Index } from "../../types";
 
 /**
  * This function generates a generic handler for proxy objects

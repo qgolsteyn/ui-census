@@ -1,9 +1,9 @@
 import { CensusObject, CensusDefinition } from "./types";
 
-import createAdapter from "./createAdapter";
-import createAsyncAdapter from "./createAsyncAdapter";
-import createDOMAdapter from "./createDOMAdapter";
-import createWebElementAdapter from "./createWebElementAdapter";
+import createAdapter from "./core/createAdapter";
+import createAsyncAdapter from "./core/createAsyncAdapter";
+import createDOMAdapter from "./core/createDOMAdapter";
+import createWebElementAdapter from "./core/createWebElementAdapter";
 
 export { CensusObject, CensusDefinition };
 export {

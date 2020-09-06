@@ -1,4 +1,4 @@
-import { createDOMAdapter } from "..";
+import { createDOMAdapter } from "../..";
 
 const b = createDOMAdapter({
   div: {

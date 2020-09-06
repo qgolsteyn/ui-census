@@ -1,6 +1,6 @@
 import createAdapter from "./createAdapter";
 
-import { CensusObject, CensusDefinition } from "./types";
+import { CensusObject, CensusDefinition } from "../types";
 
 // We re-export the adapter factory with the correct type
 // for use with DOM or JSDOM elements.

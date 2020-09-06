@@ -1,6 +1,6 @@
-import { Builder, By, Key, until } from "selenium-webdriver";
+import { Builder, By } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
-import { createWebElementAdapter } from "..";
+import { createWebElementAdapter } from "../..";
 
 import "chromedriver";
 
