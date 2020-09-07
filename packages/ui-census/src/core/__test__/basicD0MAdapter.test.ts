@@ -23,7 +23,9 @@ test("it handles a basic query", () => {
   div.textContent = "Test 1";
   document.body.append(div);
 
-  expect(doc.div[0].text).toBe("Test 1");
+  const divs = doc.div();
+
+  expect(divs[0].text).toBe("Test 1");
 });
 
 test("it handles a query by prop with mapping", () => {
@@ -33,7 +35,7 @@ test("it handles a query by prop with mapping", () => {
     document.body.append(div);
   }
 
-  expect(doc.div.map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
+  expect(doc.div().map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
 });
 
 test("it handles object deep equality", () => {
@@ -42,8 +44,8 @@ test("it handles object deep equality", () => {
   div.textContent = "Test 4";
   document.body.append(div);
 
-  expect(Object.keys(doc.div[0])).toStrictEqual(["text"]);
-  expect(doc.div[0]).toEqual({ text: "Test 4" });
+  expect(Object.keys(doc.div()[0])).toStrictEqual(["text"]);
+  expect(doc.div()[0]).toEqual({ text: "Test 4" });
 });
 
 test("it supports snapshot testing", () => {
@@ -52,7 +54,7 @@ test("it supports snapshot testing", () => {
   div.textContent = "Test 4";
   document.body.append(div);
 
-  expect(doc.div).toMatchSnapshot();
+  expect(doc.div()).toMatchSnapshot();
 });
 
 test("it handles a simple query", () => {
@@ -62,7 +64,7 @@ test("it handles a simple query", () => {
     document.body.append(div);
   }
 
-  const match = query(doc.div).match({ text: "2" }).single();
+  const match = query(doc.div()).match({ text: "2" }).single();
 
   expect(match).toEqual({ text: "2" });
 });

@@ -15,7 +15,7 @@ const b = createTestRender({
 test("it handles a basic query", () => {
   const doc = b(<div>Test 1</div>);
 
-  expect(doc.div[0].text).toBe("Test 1");
+  expect(doc.div()[0].text).toBe("Test 1");
 });
 
 test("it handles a query by prop with mapping", () => {
@@ -27,11 +27,11 @@ test("it handles a query by prop with mapping", () => {
     </>
   );
 
-  expect(doc.div.map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
+  expect(doc.div().map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
 });
 
 test("it supports snapshot testing", () => {
   const doc = b(<div id="test">Test 4</div>);
 
-  expect(doc.div).toMatchSnapshot();
+  expect(doc.div()).toMatchSnapshot();
 });

@@ -29,23 +29,17 @@ const createAdapter = <
 >(
   definition: Definition
 ) => (target: ElementType) => {
-  const handler: ProxyHandler<Dict> = {
-    ...createBaseProxyHandler(Reflect.ownKeys(definition)),
-    get: (obj, p) => {
-      if (typeof p !== "symbol" && p in definition) {
-        return definition[p]
-          ._selector(target)
-          .map((element) => createQueryProxy(element, definition[p]));
-      } else {
-        // @ts-expect-error
-        // Typescript does not allow us to index a dict with a symbol. That's
-        // not correct.
-        return obj[p];
-      }
-    },
-  };
+  const doc: CensusObject<Definition> = {} as any;
 
-  return new Proxy({} as any, handler) as CensusObject<Definition>;
+  for (const key in definition) {
+    doc[key] = () => {
+      return definition[key]
+        ._selector(target)
+        .map((element) => createQueryProxy(element, definition[key]));
+    };
+  }
+
+  return doc;
 };
 
 export default createAdapter;

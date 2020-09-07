@@ -27,7 +27,7 @@ test("it can find a single element", () => {
     document.body.append(div);
   }
 
-  const match = query(doc.div).match({ text: "2" }).single();
+  const match = query(doc.div()).match({ text: "2" }).single();
 
   expect(match.text).toBe("2");
 });
@@ -39,7 +39,7 @@ test("it can find a multiple element", () => {
     document.body.append(div);
   }
 
-  const match = query(doc.div).match({ text: "test" }).all();
+  const match = query(doc.div()).match({ text: "test" }).all();
 
   expect(match.map((element) => element.text)).toStrictEqual([
     "test",

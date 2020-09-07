@@ -1,5 +1,18 @@
 import { Dict, CensusDefinitionAsync, CensusObjectAsync } from "../types";
-import { createBaseProxyHandler } from "./utils/proxy";
+
+const resolveElement = async <ElementType>(
+  element: ElementType,
+  queryResolver: Dict<(element: ElementType) => any>
+) => {
+  const resolvedElement: any = {};
+
+  for (const key in queryResolver) {
+    if (key[0] === "_") continue;
+    resolvedElement[key] = await queryResolver[key](element);
+  }
+
+  return resolvedElement;
+};
 
 const createAsyncAdapter = <
   ElementType,
@@ -7,33 +20,20 @@ const createAsyncAdapter = <
 >(
   definition: Definition
 ) => (target: ElementType) => {
-  const handler: ProxyHandler<Dict> = {
-    ...createBaseProxyHandler(Reflect.ownKeys(definition)),
-    get: async (obj, p) => {
-      if (typeof p !== "symbol" && p in definition) {
-        return await Promise.all(
-          (await definition[p]._selector(target)).map(async (element) => {
-            const out: any = {};
-            for (const key in definition[p]) {
-              if (key[0] === "_") {
-                continue;
-              } else {
-                out[key] = await definition[p][key](element);
-              }
-            }
-            return out;
-          })
-        );
-      } else {
-        // @ts-expect-error
-        // Typescript does not allow us to index a dict with a symbol. That's
-        // not correct.
-        return obj[p];
-      }
-    },
-  };
+  const doc: CensusObjectAsync<Definition> = {} as any;
 
-  return new Proxy({} as any, handler) as CensusObjectAsync<Definition>;
+  for (const key in definition) {
+    doc[key] = async () => {
+      const elements = await definition[key]._selector(target);
+      const resolvedElements = await Promise.all(
+        elements.map((element) => resolveElement(element, definition[key]))
+      );
+
+      return resolvedElements;
+    };
+  }
+
+  return doc;
 };
 
 export default createAsyncAdapter;

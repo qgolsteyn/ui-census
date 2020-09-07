@@ -26,7 +26,7 @@ test("it can find a single element", async () => {
   div.textContent = "Test 1";
   document.body.append(div);
 
-  const match = await query(doc.div).match({ id: "test" }).single();
+  const match = await query(doc.div()).match({ id: "test" }).single();
 
   expect(match.text).toBe("Test 1");
 });
@@ -38,7 +38,7 @@ test("it can find a multiple element", async () => {
     document.body.append(div);
   }
 
-  const match = await query(doc.div).match({ text: "test" }).all();
+  const match = await query(doc.div()).match({ text: "test" }).all();
 
   expect(match.map((element) => element.text)).toStrictEqual([
     "test",

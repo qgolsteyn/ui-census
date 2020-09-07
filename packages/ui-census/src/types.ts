@@ -12,7 +12,7 @@ export type CensusDefinitionAsync<ElementType> = Dict<{
 }>;
 
 export type CensusObject<Definition extends CensusDefinition<any>> = {
-  [DefinitionKey in keyof Definition]: Array<
+  [DefinitionKey in keyof Definition]: () => Array<
     {
       [QueryKey in Exclude<
         keyof Definition[DefinitionKey],
@@ -25,7 +25,7 @@ export type CensusObject<Definition extends CensusDefinition<any>> = {
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
 
 export type CensusObjectAsync<Definition extends CensusDefinitionAsync<any>> = {
-  [DefinitionKey in keyof Definition]: Promise<
+  [DefinitionKey in keyof Definition]: () => Promise<
     Array<
       {
         [QueryKey in Exclude<

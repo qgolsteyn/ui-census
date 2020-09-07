@@ -33,12 +33,12 @@ afterAll(async () => {
 });
 
 test("it handles a basic query", async () => {
-  const h1 = await doc.h1;
+  const h1 = await doc.h1();
   expect(h1[0].text).toBe("Example Domain");
 });
 
 test("it handles a complex query", async () => {
-  const p = await doc.p;
+  const p = await doc.p();
   expect(p.map((item) => item.text)).toEqual([
     "This domain is for use in illustrative examples in documents. You may use this domain in literature without prior coordination or asking for permission.",
     "More information...",
@@ -46,12 +46,13 @@ test("it handles a complex query", async () => {
 });
 
 test("it handles a simple query", async () => {
-  const match = await query(doc.h1).match({ text: "Example Domain" }).single();
+  const match = await query(doc.h1())
+    .match({ text: "Example Domain" })
+    .single();
 
   expect(match).toEqual({ text: "Example Domain" });
 });
-
 test("it handles snapshot testing", async () => {
-  const p = await doc.p;
+  const p = await doc.p();
   expect(p).toMatchSnapshot();
 });
