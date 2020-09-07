@@ -1,5 +1,4 @@
-import { createDOMAdapter } from "../..";
-import { query } from "../../query";
+import createDOMAdapter from "../createDOMAdapter";
 
 const b = createDOMAdapter({
   div: {
@@ -23,9 +22,9 @@ test("it handles a basic query", () => {
   div.textContent = "Test 1";
   document.body.append(div);
 
-  const divs = doc.div();
+  const divObject = doc.div().single();
 
-  expect(divs[0].text).toBe("Test 1");
+  expect(divObject.text).toBe("Test 1");
 });
 
 test("it handles a query by prop with mapping", () => {
@@ -35,7 +34,9 @@ test("it handles a query by prop with mapping", () => {
     document.body.append(div);
   }
 
-  expect(doc.div().map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
+  const divObjects = doc.div().all();
+
+  expect(divObjects.map((node) => node.text)).toStrictEqual(["1", "2", "3"]);
 });
 
 test("it handles object deep equality", () => {
@@ -44,8 +45,10 @@ test("it handles object deep equality", () => {
   div.textContent = "Test 4";
   document.body.append(div);
 
-  expect(Object.keys(doc.div()[0])).toStrictEqual(["text"]);
-  expect(doc.div()[0]).toEqual({ text: "Test 4" });
+  const divObject = doc.div().single();
+
+  expect(Object.keys(divObject)).toStrictEqual(["text"]);
+  expect(divObject).toEqual({ text: "Test 4" });
 });
 
 test("it supports snapshot testing", () => {
@@ -54,7 +57,7 @@ test("it supports snapshot testing", () => {
   div.textContent = "Test 4";
   document.body.append(div);
 
-  expect(doc.div()).toMatchSnapshot();
+  expect(doc.div().all()).toMatchSnapshot();
 });
 
 test("it handles a simple query", () => {
@@ -64,7 +67,7 @@ test("it handles a simple query", () => {
     document.body.append(div);
   }
 
-  const match = query(doc.div()).match({ text: "2" }).single();
+  const match = doc.div().match({ text: "2" }).single();
 
   expect(match).toEqual({ text: "2" });
 });

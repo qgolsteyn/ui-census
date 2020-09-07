@@ -1,4 +1,6 @@
-import { Dict, CensusDefinitionAsync, CensusObjectAsync } from "../types";
+import { Dict } from "../types";
+import { CensusDefinitionAsync, CensusObjectAsync } from "./types";
+import { queryAsync } from "./query/queryAsync";
 
 const resolveElement = async <ElementType>(
   element: ElementType,
@@ -23,13 +25,15 @@ const createAsyncAdapter = <
   const doc: CensusObjectAsync<Definition> = {} as any;
 
   for (const key in definition) {
-    doc[key] = async () => {
-      const elements = await definition[key]._selector(target);
-      const resolvedElements = await Promise.all(
-        elements.map((element) => resolveElement(element, definition[key]))
-      );
-
-      return resolvedElements;
+    doc[key] = () => {
+      const elementResolver = async () => {
+        const elements = await definition[key]._selector(target);
+        const resolvedElements = await Promise.all(
+          elements.map((element) => resolveElement(element, definition[key]))
+        );
+        return resolvedElements;
+      };
+      return queryAsync(elementResolver());
     };
   }
 

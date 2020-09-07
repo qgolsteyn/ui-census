@@ -1,4 +1,4 @@
-import { Dict } from "../types";
+import { Dict } from "../../types";
 
 export const match = <T extends Dict>(
   elements: T[],

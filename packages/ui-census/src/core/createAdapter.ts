@@ -1,5 +1,7 @@
-import { Dict, CensusObject, CensusDefinition } from "../types";
+import { Dict } from "../types";
+import { CensusObject, CensusDefinition } from "./types";
 import { createBaseProxyHandler } from "./utils/proxy";
+import { querySync } from "./query/querySync";
 
 const createQueryProxy = <ElementType>(
   element: ElementType,
@@ -33,9 +35,11 @@ const createAdapter = <
 
   for (const key in definition) {
     doc[key] = () => {
-      return definition[key]
-        ._selector(target)
-        .map((element) => createQueryProxy(element, definition[key]));
+      return querySync(
+        definition[key]
+          ._selector(target)
+          .map((element) => createQueryProxy(element, definition[key]))
+      );
     };
   }
 

@@ -1,4 +1,4 @@
-import { CensusObject, CensusDefinition } from "./types";
+import { CensusObject, CensusDefinition } from "./core/types";
 
 import createAdapter from "./core/createAdapter";
 import createAsyncAdapter from "./core/createAsyncAdapter";

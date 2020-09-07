@@ -1,8 +1,14 @@
-import { Dict } from "../types";
+import { Dict } from "../../types";
 
-import { match } from "./query";
+import { match } from "./queries";
 
 type Operation<T extends Dict> = (elements: T[]) => T[];
+
+export type QueryAsync<T extends Dict> = {
+  match: (schema: Partial<T>) => QueryAsync<T>;
+  single: () => Promise<T>;
+  all: () => Promise<T[]>;
+};
 
 export const queryAsync = <T extends Dict>(
   elements: Promise<T[]>,
