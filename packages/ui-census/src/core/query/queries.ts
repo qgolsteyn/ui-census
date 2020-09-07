@@ -10,3 +10,15 @@ export const match = <T extends Dict>(
   }
   return filtered;
 };
+
+export const apply = <T extends Dict>(
+  elements: T[],
+  operations: Array<(elements: T[]) => T[]>
+) => {
+  let filtered = elements;
+  for (const operation of operations) {
+    filtered = operation(filtered);
+  }
+
+  return filtered;
+};
