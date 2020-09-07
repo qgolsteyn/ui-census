@@ -2,7 +2,7 @@ import { Builder, By } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
 
 import { createWebElementAdapter } from "../..";
-import { query } from "../../helpers/query";
+import { query } from "../../query";
 
 import "chromedriver";
 

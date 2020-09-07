@@ -1,5 +1,5 @@
 import { createDOMAdapter } from "../..";
-import { query } from "../query";
+import { query } from "..";
 
 const b = createDOMAdapter({
   div: {
@@ -21,14 +21,15 @@ afterEach(() => {
 });
 
 test("it can find a single element", () => {
-  const div = document.createElement("div");
-  div.id = "test";
-  div.textContent = "Test 1";
-  document.body.append(div);
+  for (let i = 1; i <= 3; i++) {
+    const div = document.createElement("div");
+    div.textContent = String(i);
+    document.body.append(div);
+  }
 
-  const match = query(doc.div).match({ id: "test" }).single();
+  const match = query(doc.div).match({ text: "2" }).single();
 
-  expect(match.text).toBe("Test 1");
+  expect(match.text).toBe("2");
 });
 
 test("it can find a multiple element", () => {

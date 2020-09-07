@@ -1,5 +1,5 @@
 import { createAsyncAdapter } from "../..";
-import { query } from "../query";
+import { query } from "..";
 
 const b = createAsyncAdapter({
   div: {

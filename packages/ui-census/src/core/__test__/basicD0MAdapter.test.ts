@@ -1,5 +1,5 @@
 import { createDOMAdapter } from "../..";
-import { query } from "../../helpers/query";
+import { query } from "../../query";
 
 const b = createDOMAdapter({
   div: {
