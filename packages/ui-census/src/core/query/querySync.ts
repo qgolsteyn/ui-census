@@ -1,11 +1,12 @@
 import { Dict } from "../../types";
 
-import { match, apply } from "./queries";
+import { matches, contains, apply } from "./queries";
 
 type Operation<T extends Dict> = (elements: T[]) => T[];
 
 export type QuerySync<T extends Dict> = {
-  match: (schema: Partial<T>) => QuerySync<T>;
+  matches: (schema: T) => QuerySync<T>;
+  contains: (schema: Partial<T>) => QuerySync<T>;
   single: () => T;
   first: () => T;
   last: () => T;
@@ -17,7 +18,8 @@ export const querySync = <T extends Dict>(
   operations: Operation<T>[] = []
 ) => {
   return {
-    match: matchSync(elements, operations),
+    matches: applyOperation(matches, elements, operations),
+    contains: applyOperation(contains, elements, operations),
     single: single(elements, operations),
     first: first(elements, operations),
     last: last(elements, operations),
@@ -25,13 +27,14 @@ export const querySync = <T extends Dict>(
   };
 };
 
-const matchSync = <T extends Dict>(
+const applyOperation = <T extends Dict, K extends any[]>(
+  operation: (elements: T[], ...args: K) => T[],
   elements: T[],
   operations: Operation<T>[]
-) => (schema: Partial<T>) => {
+) => (...args: K) => {
   return querySync(elements, [
     ...operations,
-    (elements) => match(elements, schema),
+    (elements) => operation(elements, ...args),
   ]);
 };
 

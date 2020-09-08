@@ -67,7 +67,7 @@ test("it handles a simple query", () => {
     document.body.append(div);
   }
 
-  const match = doc.div().match({ text: "2" }).single();
+  const match = doc.div().contains({ text: "2" }).single();
 
   expect(match).toEqual({ text: "2" });
 });

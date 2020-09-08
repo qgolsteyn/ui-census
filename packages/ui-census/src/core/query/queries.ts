@@ -1,6 +1,6 @@
 import { Dict } from "../../types";
 
-export const match = <T extends Dict>(
+export const contains = <T extends Dict>(
   elements: T[],
   schema: Partial<T>
 ): T[] => {
@@ -9,6 +9,17 @@ export const match = <T extends Dict>(
     filtered = filtered.filter((element) => element[key] === schema[key]);
   }
   return filtered;
+};
+
+export const matches = <T extends Dict>(elements: T[], schema: T): T[] => {
+  return elements.filter((element) => {
+    for (const key in element) {
+      if (element[key] !== schema[key]) {
+        return false;
+      }
+    }
+    return true;
+  });
 };
 
 export const apply = <T extends Dict>(

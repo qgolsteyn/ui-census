@@ -45,7 +45,7 @@ test("it handles a complex query", async () => {
 });
 
 test("it handles a simple query", async () => {
-  const match = await doc.h1().match({ text: "Example Domain" }).single();
+  const match = await doc.h1().contains({ text: "Example Domain" }).single();
 
   expect(match).toEqual({ text: "Example Domain" });
 });

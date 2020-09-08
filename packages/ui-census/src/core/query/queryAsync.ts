@@ -1,11 +1,12 @@
 import { Dict } from "../../types";
 
-import { match, apply } from "./queries";
+import { matches, contains, apply } from "./queries";
 
 type Operation<T extends Dict> = (elements: T[]) => T[];
 
 export type QueryAsync<T extends Dict> = {
-  match: (schema: Partial<T>) => QueryAsync<T>;
+  matches: (schema: T) => QueryAsync<T>;
+  contains: (schema: Partial<T>) => QueryAsync<T>;
   single: () => Promise<T>;
   first: () => Promise<T>;
   last: () => Promise<T>;
@@ -17,7 +18,8 @@ export const queryAsync = <T extends Dict>(
   operations: Operation<T>[] = []
 ) => {
   return {
-    match: matchAsync(elements, operations),
+    matches: applyOperation(matches, elements, operations),
+    contains: applyOperation(contains, elements, operations),
     single: single(elements, operations),
     first: first(elements, operations),
     last: last(elements, operations),
@@ -25,13 +27,14 @@ export const queryAsync = <T extends Dict>(
   };
 };
 
-const matchAsync = <T extends Dict>(
+const applyOperation = <T extends Dict, K extends any[]>(
+  operation: (elements: T[], ...args: K) => T[],
   elements: Promise<T[]>,
   operations: Operation<T>[]
-) => (schema: Partial<T>) => {
+) => (...args: K) => {
   return queryAsync(elements, [
     ...operations,
-    (elements) => match(elements, schema),
+    (elements) => operation(elements, ...args),
   ]);
 };
 
