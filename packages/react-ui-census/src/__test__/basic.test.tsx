@@ -3,12 +3,15 @@ import { createReactAdapter } from "..";
 
 const b = createReactAdapter({
   div: {
-    _selector: (target) => {
+    selector: (target) => {
       let elements = Array.from(target.querySelectorAll("div"));
 
       return elements;
     },
-    text: (element) => element.textContent,
+    queries: {
+      text: (element) => element.textContent,
+    },
+    actions: {},
   },
 });
 

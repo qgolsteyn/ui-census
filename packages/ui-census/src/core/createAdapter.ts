@@ -5,17 +5,15 @@ import { querySync } from "./query/querySync";
 
 const createQueryProxy = <ElementType>(
   element: ElementType,
-  queryResolver: Dict<(element: ElementType) => any>
+  queryResolver: Dict<(element: ElementType) => any>,
+  actionResolver: Dict<(element: ElementType) => any>
 ) => {
+  const combinedResolvers = { ...queryResolver, ...actionResolver };
   const handler: ProxyHandler<Dict> = {
-    ...createBaseProxyHandler(
-      Reflect.ownKeys(queryResolver).filter(
-        (key) => typeof key !== "string" || key[0] != "_"
-      )
-    ),
+    ...createBaseProxyHandler(Reflect.ownKeys(queryResolver)),
     get: (_, p) => {
-      if (typeof p === "string" && p[0] !== "_" && p in queryResolver) {
-        return queryResolver[p](element);
+      if (typeof p === "string" && p in combinedResolvers) {
+        return combinedResolvers[p](element);
       } else {
         return undefined;
       }
@@ -37,8 +35,14 @@ const createAdapter = <
     doc[key] = () => {
       return querySync(
         definition[key]
-          ._selector(target)
-          .map((element) => createQueryProxy(element, definition[key]))
+          .selector(target)
+          .map((element) =>
+            createQueryProxy(
+              element,
+              definition[key].queries,
+              definition[key].actions
+            )
+          )
       );
     };
   }

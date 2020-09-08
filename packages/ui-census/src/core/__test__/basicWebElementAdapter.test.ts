@@ -7,12 +7,18 @@ import "chromedriver";
 
 const b = createWebElementAdapter({
   h1: {
-    _selector: (target) => target.findElements(By.css("h1")),
-    text: (element) => element.getText(),
+    selector: (target) => target.findElements(By.css("h1")),
+    queries: {
+      text: (element) => element.getText(),
+    },
+    actions: {},
   },
   p: {
-    _selector: (target) => target.findElements(By.css("p")),
-    text: (element) => element.getText(),
+    selector: (target) => target.findElements(By.css("p")),
+    queries: {
+      text: (element) => element.getText(),
+    },
+    actions: {},
   },
 });
 

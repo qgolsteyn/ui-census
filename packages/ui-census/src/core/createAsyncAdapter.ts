@@ -1,19 +1,27 @@
 import { Dict } from "../types";
 import { CensusDefinitionAsync, CensusObjectAsync } from "./types";
 import { queryAsync } from "./query/queryAsync";
+import { createBaseProxyHandler } from "./utils/proxy";
 
 const resolveElement = async <ElementType>(
   element: ElementType,
-  queryResolver: Dict<(element: ElementType) => any>
+  queryResolver: Dict<(element: ElementType) => any>,
+  actionResolver: Dict<(element: ElementType) => any>
 ) => {
   const resolvedElement: any = {};
 
-  for (const key in queryResolver) {
-    if (key[0] === "_") continue;
-    resolvedElement[key] = await queryResolver[key](element);
+  const combinedResolvers = { ...queryResolver, ...actionResolver };
+
+  for (const key in combinedResolvers) {
+    resolvedElement[key] = await combinedResolvers[key](element);
   }
 
-  return resolvedElement;
+  const handler: ProxyHandler<Dict> = {
+    ...createBaseProxyHandler(Object.keys(queryResolver)),
+    get: (_, p) => resolvedElement[p],
+  };
+
+  return new Proxy({}, handler) as typeof resolvedElement;
 };
 
 const createAsyncAdapter = <
@@ -27,9 +35,15 @@ const createAsyncAdapter = <
   for (const key in definition) {
     doc[key] = () => {
       const elementResolver = async () => {
-        const elements = await definition[key]._selector(target);
+        const elements = await definition[key].selector(target);
         const resolvedElements = await Promise.all(
-          elements.map((element) => resolveElement(element, definition[key]))
+          elements.map((element) =>
+            resolveElement(
+              element,
+              definition[key].queries,
+              definition[key].actions
+            )
+          )
         );
         return resolvedElements;
       };

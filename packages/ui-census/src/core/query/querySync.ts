@@ -4,13 +4,13 @@ import { matches, contains, apply } from "./queries";
 
 type Operation<T extends Dict> = (elements: T[]) => T[];
 
-export type QuerySync<T extends Dict> = {
-  matches: (schema: T) => QuerySync<T>;
-  contains: (schema: Partial<T>) => QuerySync<T>;
-  single: () => T;
-  first: () => T;
-  last: () => T;
-  all: () => T[];
+export type QuerySync<Queries extends Dict, Actions extends Dict> = {
+  matches: (schema: Queries) => QuerySync<Queries, Actions>;
+  contains: (schema: Partial<Queries>) => QuerySync<Queries, Actions>;
+  single: () => Queries & Actions;
+  first: () => Queries & Actions;
+  last: () => Queries & Actions;
+  all: () => Array<Queries & Actions>;
 };
 
 export const querySync = <T extends Dict>(
