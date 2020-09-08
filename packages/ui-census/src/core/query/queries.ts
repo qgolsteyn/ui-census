@@ -13,7 +13,7 @@ export const contains = <T extends Dict>(
 
 export const matches = <T extends Dict>(elements: T[], schema: T): T[] => {
   return elements.filter((element) => {
-    for (const key in element) {
+    for (const key in { ...element, ...schema }) {
       if (element[key] !== schema[key]) {
         return false;
       }
