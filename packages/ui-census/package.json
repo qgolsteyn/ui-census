@@ -22,8 +22,5 @@
   ],
   "repository": {
     "url": "https://github.com/qgolsteyn/ui-census"
-  },
-  "dependencies": {
-    "csstype": "^3.0.3"
   }
 }

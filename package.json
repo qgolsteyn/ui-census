@@ -18,7 +18,8 @@
   },
   "workspaces": [
     "packages/ui-census",
-    "packages/react-ui-census"
+    "packages/react-ui-census",
+    "packages/dom-ui-census"
   ],
   "devDependencies": {
     "@types/chromedriver": "^81.0.0",

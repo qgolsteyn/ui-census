@@ -1,0 +1,16 @@
+{
+  "moduleFileExtensions": ["ts", "tsx", "js"],
+  "transform": {
+    "\\.tsx?$": "ts-jest"
+  },
+  "testMatch": ["**/*.test.tsx", "**/*.test.ts"],
+  "globals": {
+    "ts-jest": {
+      "tsConfig": "tsconfig.json"
+    }
+  },
+  "moduleNameMapper": {
+    "ui-census/(.*)$": "<rootDir>/packages/ui-census/src/$1",
+    "ui-census$": "<rootDir>/packages/ui-census/src"
+  }
+}

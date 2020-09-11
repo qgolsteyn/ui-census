@@ -6,6 +6,6 @@
     "baseUrl": ".",
     "tsBuildInfoFile": ".tsc/.tsbuildinfo"
   },
-  "references": [{ "path": "../ui-census", "path": "../dom-ui-census" }],
+  "references": [{ "path": "../ui-census" }],
   "include": ["src"]
 }

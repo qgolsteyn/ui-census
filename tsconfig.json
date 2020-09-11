@@ -4,6 +4,7 @@
   "include": [],
   "references": [
     { "path": "./packages/ui-census" },
-    { "path": "./packages/react-ui-census" }
+    { "path": "./packages/react-ui-census" },
+    { "path": "./packages/dom-ui-census" }
   ]
 }
