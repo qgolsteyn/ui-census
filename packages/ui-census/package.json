@@ -23,7 +23,7 @@
   "repository": {
     "url": "https://github.com/qgolsteyn/ui-census"
   },
-  "devDependencies": {
-    "@types/selenium-webdriver": "^4.0.9"
+  "dependencies": {
+    "csstype": "^3.0.3"
   }
 }

@@ -3,7 +3,12 @@
 exports[`it supports snapshot testing 1`] = `
 Array [
   Object {
-    "text": "Test 4",
+    "length": 8,
+    "text": "snapshot",
+  },
+  Object {
+    "length": 7,
+    "text": "testing",
   },
 ]
 `;

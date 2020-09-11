@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it supports snapshot testing 1`] = `
+Array [
+  Object {
+    "length": 8,
+    "text": "snapshot",
+  },
+  Object {
+    "length": 7,
+    "text": "testing",
+  },
+]
+`;
