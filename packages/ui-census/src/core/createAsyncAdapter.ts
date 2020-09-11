@@ -33,9 +33,9 @@ const createAsyncAdapter = <
   const doc: CensusObjectAsync<Definition> = {} as any;
 
   for (const key in definition) {
-    doc[key] = () => {
+    doc[key] = (...args: any[]) => {
       const elementResolver = async () => {
-        const elements = await definition[key].selector(target);
+        const elements = await definition[key].selector(target, ...args);
         const resolvedElements = await Promise.all(
           elements.map((element) =>
             resolveElement(

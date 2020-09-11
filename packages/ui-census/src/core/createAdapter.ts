@@ -32,10 +32,10 @@ const createAdapter = <
   const doc: CensusObject<Definition> = {} as any;
 
   for (const key in definition) {
-    doc[key] = () => {
+    doc[key] = (...args: any[]) => {
       return querySync(
         definition[key]
-          .selector(target)
+          .selector(target, args)
           .map((element) =>
             createQueryProxy(
               element,

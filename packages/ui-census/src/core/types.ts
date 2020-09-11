@@ -17,7 +17,7 @@ export interface SerializeableObject {
 export interface SerializeableArray extends Array<Serializeable> {}
 
 export type CensusDefinition<ElementType> = Dict<{
-  selector: (target: ElementType) => ElementType[];
+  selector: (target: ElementType, ...args: any[]) => ElementType[];
   actions: {
     [key: string]: (target: ElementType) => (...args: any) => any;
   };
@@ -27,7 +27,7 @@ export type CensusDefinition<ElementType> = Dict<{
 }>;
 
 export type CensusDefinitionAsync<ElementType> = Dict<{
-  selector: (target: ElementType) => Promise<ElementType[]>;
+  selector: (target: ElementType, ...args: any[]) => Promise<ElementType[]>;
   actions: {
     [key: string]: (target: ElementType) => (...args: any) => any;
   };
@@ -38,8 +38,17 @@ export type CensusDefinitionAsync<ElementType> = Dict<{
   };
 }>;
 
+type ExtractAdditionalArguments<T extends (...args: any) => any> = T extends (
+  a: any,
+  ...b: infer I
+) => any
+  ? I
+  : never;
+
 export type CensusObject<Definition extends CensusDefinition<any>> = {
-  [DefinitionKey in keyof Definition]: () => QuerySync<
+  [DefinitionKey in keyof Definition]: (
+    ...args: ExtractAdditionalArguments<Definition[DefinitionKey]["selector"]>
+  ) => QuerySync<
     {
       [QueryKey in keyof Definition[DefinitionKey]["queries"]]: ReturnType<
         Definition[DefinitionKey]["queries"][QueryKey]
@@ -56,7 +65,9 @@ export type CensusObject<Definition extends CensusDefinition<any>> = {
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
 
 export type CensusObjectAsync<Definition extends CensusDefinitionAsync<any>> = {
-  [DefinitionKey in keyof Definition]: () => QueryAsync<
+  [DefinitionKey in keyof Definition]: (
+    ...args: ExtractAdditionalArguments<Definition[DefinitionKey]["selector"]>
+  ) => QueryAsync<
     {
       [QueryKey in keyof Definition[DefinitionKey]["queries"]]: ThenArg<
         ReturnType<Definition[DefinitionKey]["queries"][QueryKey]>
