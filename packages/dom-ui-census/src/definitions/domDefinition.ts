@@ -1,11 +1,15 @@
 import * as CSS from "csstype";
 
-interface IGlobalAttributes {
+export type QueryTransform<T extends {}> = {
+  [Key in keyof T]: (element: HTMLElement) => T[Key];
+};
+
+export interface IGlobalAttributes {
   /**
    * Provides a hint for generating a keyboard shortcut for the current element. This attribute consists of a space-separated list of characters.
    * The browser should use the first one that exists on the computer keyboard layout.
    */
-  accesskey: string;
+  accessKey: string;
   /**
    * Controls whether and how text input is automatically capitalized as it is entered/edited by the user. It can have the following values:
    * - **off or none**, no autocapitalization is applied (all letters default to lowercase)
@@ -13,15 +17,15 @@ interface IGlobalAttributes {
    * - **words**, the first letter of each word defaults to a capital letter; all other letters default to lowercase
    * - **characters**, all letters should default to uppercase
    */
-  autocapitalize: "off" | "none" | "on" | "sentences" | "words" | "characters";
+  autoCapitalize: "off" | "none" | "on" | "sentences" | "words" | "characters";
   /** List of the classes of the element */
-  className: string[];
+  classNames: string[];
   /**
    * An enumerated attribute indicating if the element should be editable by the user. If so, the browser modifies its widget to allow editing. The attribute must take one of the following values:
    * **true**, which indicates that the element must be editable;
    * **false**, which indicates that the element must not be editable.
    */
-  contenteditable: boolean;
+  contentEditable: boolean;
   /**
    * Forms a class of attributes, called custom data attributes,
    * that allow proprietary information to be exchanged between the HTML and its DOM representation that may be used by scripts.
@@ -53,7 +57,7 @@ interface IGlobalAttributes {
    * Provides a hint to browsers as to the type of virtual keyboard configuration to use when editing this element or its contents.
    * Used primarily on <input> elements, but is usable on any element while in contenteditable mode.
    */
-  inputmode: string;
+  inputMode: string;
   /**
    * Helps define the language of an element: the language that non-editable elements are in, or the language that editable elements should be written in by the user.
    */
@@ -67,18 +71,14 @@ interface IGlobalAttributes {
   /**
    * Contains inline CSS styling declarations to be applied to the element.
    */
-  style: string;
-  /**
-   * Contains a parsed object based on the inline styling declaration
-   */
-  styleParsed: CSS.Properties;
+  style: CSS.Properties;
   /**
    * An integer attribute indicating if the element can take input focus (is focusable), if it should participate to sequential keyboard navigation, and if so, at what position. It can take several values:
    * - **a negative value** means that the element should be focusable, but should not be reachable via sequential keyboard navigation;
    * - **0** means that the element should be focusable and reachable via sequential keyboard navigation, but its relative order is defined by the platform convention;
    * - **a positive value** means that the element should be focusable and reachable via sequential keyboard navigation; the order in which the elements are focused is the increasing value of the tabindex. If several elements share the same tabindex, their relative order follows their relative positions in the document.
    */
-  tabindex: number;
+  tabIndex: number;
   /**
    * Contains a text representing advisory information related to the element it belongs to. Such information can typically,
    * but not necessarily, be presented to the user as a tooltip.
@@ -86,7 +86,7 @@ interface IGlobalAttributes {
   title: string;
 }
 
-interface IDomDefinition {
+export interface IDomDefinition {
   // DOCUMENT METADATA
 
   /** The HTML `<base>` element specifies the base URL to use for all relative URLs in a document. */
@@ -144,7 +144,7 @@ interface IDomDefinition {
      * If the attribute is not present, the resource is fetched without a CORS request (i.e. without sending the Origin HTTP header),
      * preventing its non-tainted usage. If invalid, it is handled as if the enumerated keyword anonymous was used
      */
-    crossorigin: "anonymous" | "use-credentials";
+    crossOrigin: "anonymous" | "use-credentials";
     /**
      * For rel="stylesheet" only, the disabled Boolean attribute indicates whether or not the
      * described stylesheet should be loaded and applied to the document. If disabled is specified in the HTML when it is loaded,
@@ -158,7 +158,7 @@ interface IDomDefinition {
      * This attribute indicates the language of the linked resource. It is purely advisory.
      * Allowed values are determined by BCP47. Use this attribute only if the href attribute is present.
      */
-    hreflang: string;
+    hrefLang: string;
     /**
      * This attribute specifies the media that the linked resource applies to.
      */

@@ -8,9 +8,5 @@
     "ts-jest": {
       "tsConfig": "tsconfig.json"
     }
-  },
-  "moduleNameMapper": {
-    "ui-census/(.*)$": "<rootDir>/packages/ui-census/src/$1",
-    "ui-census$": "<rootDir>/packages/ui-census/src"
   }
 }

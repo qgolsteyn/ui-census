@@ -16,7 +16,7 @@ export interface SerializeableObject {
 
 export interface SerializeableArray extends Array<Serializeable> {}
 
-export type CensusDefinition<ElementType> = Dict<{
+export type CensusDefinition<ElementType> = {
   selector: (target: ElementType, ...args: any[]) => ElementType[];
   actions: {
     [key: string]: (target: ElementType) => (...args: any) => any;
@@ -24,9 +24,13 @@ export type CensusDefinition<ElementType> = Dict<{
   queries: {
     [key: string]: (target: ElementType) => Serializeable;
   };
-}>;
+};
 
-export type CensusDefinitionAsync<ElementType> = Dict<{
+export type CensusDefinitions<ElementType> = Dict<
+  CensusDefinition<ElementType>
+>;
+
+export type CensusDefinitionAsync<ElementType> = {
   selector: (target: ElementType, ...args: any[]) => Promise<ElementType[]>;
   actions: {
     [key: string]: (target: ElementType) => (...args: any) => any;
@@ -36,7 +40,11 @@ export type CensusDefinitionAsync<ElementType> = Dict<{
       target: ElementType
     ) => Serializeable | Promise<Serializeable>;
   };
-}>;
+};
+
+export type CensusDefinitionsAsync<ElementType> = Dict<
+  CensusDefinitionAsync<ElementType>
+>;
 
 type ExtractAdditionalArguments<T extends (...args: any) => any> = T extends (
   a: any,
@@ -45,7 +53,7 @@ type ExtractAdditionalArguments<T extends (...args: any) => any> = T extends (
   ? I
   : never;
 
-export type CensusObject<Definition extends CensusDefinition<any>> = {
+export type CensusObject<Definition extends CensusDefinitions<any>> = {
   [DefinitionKey in keyof Definition]: (
     ...args: ExtractAdditionalArguments<Definition[DefinitionKey]["selector"]>
   ) => QuerySync<
@@ -64,7 +72,9 @@ export type CensusObject<Definition extends CensusDefinition<any>> = {
 
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
 
-export type CensusObjectAsync<Definition extends CensusDefinitionAsync<any>> = {
+export type CensusObjectAsync<
+  Definition extends CensusDefinitionsAsync<any>
+> = {
   [DefinitionKey in keyof Definition]: (
     ...args: ExtractAdditionalArguments<Definition[DefinitionKey]["selector"]>
   ) => QueryAsync<

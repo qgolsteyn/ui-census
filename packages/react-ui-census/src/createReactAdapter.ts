@@ -2,9 +2,9 @@ import type React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import { createDOMAdapter, CensusDefinition } from "dom-ui-census";
+import { createDOMAdapter, CensusDefinitions } from "dom-ui-census";
 
-const createReactAdapter = <Definition extends CensusDefinition<HTMLElement>>(
+const createReactAdapter = <Definition extends CensusDefinitions<HTMLElement>>(
   definition: Definition
 ) => {
   const adapter = createDOMAdapter(definition);

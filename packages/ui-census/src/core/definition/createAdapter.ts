@@ -1,7 +1,7 @@
-import { Dict } from "../types";
-import { CensusObject, CensusDefinition } from "./types";
-import { createBaseProxyHandler } from "./utils/proxy";
-import { querySync } from "./query/querySync";
+import { Dict } from "../../types";
+import { CensusObject, CensusDefinitions } from "../types";
+import { createBaseProxyHandler } from "../utils/proxy";
+import { querySync } from "../query/querySync";
 
 const createQueryProxy = <ElementType>(
   element: ElementType,
@@ -25,7 +25,7 @@ const createQueryProxy = <ElementType>(
 
 const createAdapter = <
   ElementType,
-  Definition extends CensusDefinition<ElementType>
+  Definition extends CensusDefinitions<ElementType>
 >(
   definition: Definition
 ) => (target: ElementType) => {

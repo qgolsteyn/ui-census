@@ -1,5 +1,5 @@
 import createDOMAdapter from "./createDomAdapter";
 
-export { CensusObject, CensusDefinition } from "ui-census";
+export { CensusObject, CensusDefinitions } from "ui-census";
 
 export { createDOMAdapter };

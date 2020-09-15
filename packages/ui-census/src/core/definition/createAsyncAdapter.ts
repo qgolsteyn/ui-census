@@ -1,7 +1,7 @@
-import { Dict } from "../types";
-import { CensusDefinitionAsync, CensusObjectAsync } from "./types";
-import { queryAsync } from "./query/queryAsync";
-import { createBaseProxyHandler } from "./utils/proxy";
+import { Dict } from "../../types";
+import { CensusDefinitionsAsync, CensusObjectAsync } from "../types";
+import { queryAsync } from "../query/queryAsync";
+import { createBaseProxyHandler } from "../utils/proxy";
 
 const resolveElement = async <ElementType>(
   element: ElementType,
@@ -26,7 +26,7 @@ const resolveElement = async <ElementType>(
 
 const createAsyncAdapter = <
   ElementType,
-  Definition extends CensusDefinitionAsync<ElementType>
+  Definition extends CensusDefinitionsAsync<ElementType>
 >(
   definition: Definition
 ) => (target: ElementType) => {

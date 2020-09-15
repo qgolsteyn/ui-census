@@ -10,6 +10,8 @@
     }
   },
   "moduleNameMapper": {
+    "dom-ui-census/(.*)$": "<rootDir>/packages/dom-ui-census/src/$1",
+    "dom-ui-census$": "<rootDir>/packages/dom-ui-census/src",
     "ui-census/(.*)$": "<rootDir>/packages/ui-census/src/$1",
     "ui-census$": "<rootDir>/packages/ui-census/src"
   }

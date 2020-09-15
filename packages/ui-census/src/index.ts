@@ -1,7 +1,16 @@
-import { CensusObject, CensusDefinition } from "./core/types";
+import { CensusObject, CensusDefinitions } from "./core/types";
 
-import createAdapter from "./core/createAdapter";
-import createAsyncAdapter from "./core/createAsyncAdapter";
+import createAdapter from "./core/definition/createAdapter";
+import createAsyncAdapter from "./core/definition/createAsyncAdapter";
+import {
+  combineAdapters,
+  combineAsyncAdapters,
+} from "./core/definition/combineAdapters";
 
-export { CensusObject, CensusDefinition };
-export { createAdapter, createAsyncAdapter };
+export { CensusObject, CensusDefinitions };
+export {
+  createAdapter,
+  createAsyncAdapter,
+  combineAdapters,
+  combineAsyncAdapters,
+};
