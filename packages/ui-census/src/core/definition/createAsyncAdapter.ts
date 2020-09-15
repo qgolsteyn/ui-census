@@ -1,7 +1,7 @@
 import { Dict } from "../../types";
 import { CensusDefinitionsAsync, CensusObjectAsync } from "../types";
 import { queryAsync } from "../query/queryAsync";
-import { createBaseProxyHandler } from "../utils/proxy";
+import { createProxy } from "../utils/proxy";
 
 const resolveElement = async <ElementType>(
   element: ElementType,
@@ -17,11 +17,14 @@ const resolveElement = async <ElementType>(
   }
 
   const handler: ProxyHandler<Dict> = {
-    ...createBaseProxyHandler(Object.keys(queryResolver)),
     get: (_, p) => resolvedElement[p],
   };
 
-  return new Proxy({}, handler) as typeof resolvedElement;
+  return createProxy(
+    handler,
+    Object.keys(queryResolver),
+    Object.keys(combinedResolvers)
+  );
 };
 
 const createAsyncAdapter = <
@@ -30,7 +33,7 @@ const createAsyncAdapter = <
 >(
   definition: Definition
 ) => (target: ElementType) => {
-  const doc: CensusObjectAsync<Definition> = {} as any;
+  const doc: any = {};
 
   for (const key in definition) {
     doc[key] = (...args: any[]) => {
@@ -51,7 +54,7 @@ const createAsyncAdapter = <
     };
   }
 
-  return doc;
+  return doc as CensusObjectAsync<Definition>;
 };
 
 export default createAsyncAdapter;

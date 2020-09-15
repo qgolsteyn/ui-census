@@ -1,6 +1,6 @@
 import { Dict } from "../../types";
 import { CensusObject, CensusDefinitions } from "../types";
-import { createBaseProxyHandler } from "../utils/proxy";
+import { createProxy } from "../utils/proxy";
 import { querySync } from "../query/querySync";
 
 const createQueryProxy = <ElementType>(
@@ -10,7 +10,6 @@ const createQueryProxy = <ElementType>(
 ) => {
   const combinedResolvers = { ...queryResolver, ...actionResolver };
   const handler: ProxyHandler<Dict> = {
-    ...createBaseProxyHandler(Reflect.ownKeys(queryResolver)),
     get: (_, p) => {
       if (typeof p === "string" && p in combinedResolvers) {
         return combinedResolvers[p](element);
@@ -20,7 +19,11 @@ const createQueryProxy = <ElementType>(
     },
   };
 
-  return new Proxy({} as any, handler);
+  return createProxy(
+    handler,
+    Object.keys(queryResolver),
+    Object.keys(combinedResolvers)
+  );
 };
 
 const createAdapter = <
@@ -29,7 +32,7 @@ const createAdapter = <
 >(
   definition: Definition
 ) => (target: ElementType) => {
-  const doc: CensusObject<Definition> = {} as any;
+  const doc: any = {};
 
   for (const key in definition) {
     doc[key] = (...args: any[]) => {
@@ -47,7 +50,7 @@ const createAdapter = <
     };
   }
 
-  return doc;
+  return doc as CensusObject<Definition>;
 };
 
 export default createAdapter;

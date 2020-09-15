@@ -1,20 +1,11 @@
-import { Dict } from "../types";
+import {
+  Dict,
+  ExtractAdditionalArguments,
+  Serializeable,
+  ThenArg,
+} from "../types";
 import { QueryAsync } from "./query/queryAsync";
 import { QuerySync } from "./query/querySync";
-
-export type Serializeable =
-  | string
-  | boolean
-  | number
-  | null
-  | undefined
-  | SerializeableObject
-  | SerializeableArray;
-export interface SerializeableObject {
-  [key: string]: Serializeable;
-}
-
-export interface SerializeableArray extends Array<Serializeable> {}
 
 export type CensusDefinition<ElementType> = {
   selector: (target: ElementType, ...args: any[]) => ElementType[];
@@ -46,13 +37,6 @@ export type CensusDefinitionsAsync<ElementType> = Dict<
   CensusDefinitionAsync<ElementType>
 >;
 
-type ExtractAdditionalArguments<T extends (...args: any) => any> = T extends (
-  a: any,
-  ...b: infer I
-) => any
-  ? I
-  : never;
-
 export type CensusObject<Definition extends CensusDefinitions<any>> = {
   [DefinitionKey in keyof Definition]: (
     ...args: ExtractAdditionalArguments<Definition[DefinitionKey]["selector"]>
@@ -69,8 +53,6 @@ export type CensusObject<Definition extends CensusDefinitions<any>> = {
     }
   >;
 };
-
-type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
 
 export type CensusObjectAsync<
   Definition extends CensusDefinitionsAsync<any>
