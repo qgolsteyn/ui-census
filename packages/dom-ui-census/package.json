@@ -1,6 +1,6 @@
 {
   "name": "dom-ui-census",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "UI Census is a Javascript library for testing user interfaces",
   "keywords": [
     "UI",
@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "csstype": "^3.0.3",
-    "ui-census": "^0.0.14"
+    "ui-census": "^0.0.15"
   }
 }
