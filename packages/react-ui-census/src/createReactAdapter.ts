@@ -2,19 +2,21 @@ import type React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import { createDOMAdapter, CensusDefinitions } from "dom-ui-census";
+import { CombinedElementAdapter, ElementAccessorFactory } from "dom-ui-census";
 
-const createReactAdapter = <Definition extends CensusDefinitions<HTMLElement>>(
-  definition: Definition
+const createReactAdapter = <
+  Adapter extends
+    | CombinedElementAdapter<HTMLElement, any>
+    | ElementAccessorFactory<HTMLElement, any, any, any>
+>(
+  adapter: Adapter
 ) => {
-  const adapter = createDOMAdapter(definition);
-
   return (reactElement: React.ReactElement, container: HTMLDivElement) => {
     act(() => {
       ReactDOM.render(reactElement, container);
     });
 
-    return adapter(container);
+    return adapter(container) as ReturnType<Adapter>;
   };
 };
 

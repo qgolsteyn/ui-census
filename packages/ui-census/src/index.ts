@@ -1,37 +1,13 @@
 import {
-  CensusObject,
-  CensusObjectAsync,
-  CensusDefinition,
-  CensusDefinitions,
-  CensusDefinitionAsync,
-  CensusDefinitionsAsync,
+  ElementAccessor,
+  ElementAccessorFactory,
+  CombinedElementAdapter,
 } from "./core/types";
 
 import createAdapter from "./core/definition/createAdapter";
-import createAsyncAdapter from "./core/definition/createAsyncAdapter";
-import {
-  combineAdapters,
-  combineAsyncAdapters,
-} from "./core/definition/combineAdapters";
-import {
-  createDefinition,
-  createAsyncDefinition,
-} from "./core/definition/createDefinition";
+import combineAdapters from "./core/definition/combineAdapters";
+import chainAdapter from "./core/definition/chainAdapter";
 
-export {
-  CensusObject,
-  CensusObjectAsync,
-  CensusDefinition,
-  CensusDefinitions,
-  CensusDefinitionAsync,
-  CensusDefinitionsAsync,
-};
+export { ElementAccessor, ElementAccessorFactory, CombinedElementAdapter };
 
-export {
-  createAdapter,
-  createAsyncAdapter,
-  combineAdapters,
-  combineAsyncAdapters,
-  createDefinition,
-  createAsyncDefinition,
-};
+export { createAdapter, combineAdapters, chainAdapter };

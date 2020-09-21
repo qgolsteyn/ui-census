@@ -1,28 +1,29 @@
+import { createDOMAdapter } from "dom-ui-census";
 import React from "react";
 import { createTestRender } from "..";
 
-const b = createTestRender({
-  div: {
-    selector: (target) => {
-      let elements = Array.from(target.querySelectorAll("div"));
+const adapter = createDOMAdapter(
+  (target) => {
+    let elements = Array.from(target.querySelectorAll("div"));
 
-      return elements;
-    },
-    queries: {
-      text: (element) => element.textContent,
-    },
-    actions: {},
+    return elements;
   },
-});
+  {
+    text: (element) => element.textContent,
+  },
+  {}
+);
+
+const divReactAdapter = createTestRender(adapter);
 
 test("it handles a basic query", () => {
-  const doc = b(<div>Test 1</div>);
+  const divAccessor = divReactAdapter(<div>Test 1</div>);
 
-  expect(doc.div().single().text).toBe("Test 1");
+  expect(divAccessor().single().text).toBe("Test 1");
 });
 
 test("it handles a query by prop with mapping", () => {
-  const doc = b(
+  const divAccessor = divReactAdapter(
     <>
       <div>1</div>
       <div>2</div>
@@ -31,15 +32,14 @@ test("it handles a query by prop with mapping", () => {
   );
 
   expect(
-    doc
-      .div()
+    divAccessor()
       .all()
       .map((node) => node.text)
   ).toStrictEqual(["1", "2", "3"]);
 });
 
 test("it supports snapshot testing", () => {
-  const doc = b(<div id="test">Test 4</div>);
+  const divAccessor = divReactAdapter(<div id="test">Test 4</div>);
 
-  expect(doc.div().all()).toMatchSnapshot();
+  expect(divAccessor().all()).toMatchSnapshot();
 });

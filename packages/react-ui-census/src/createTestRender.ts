@@ -2,13 +2,15 @@ import type React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
 
-import { createDOMAdapter, CensusDefinitions } from "dom-ui-census";
+import { CombinedElementAdapter, ElementAccessorFactory } from "dom-ui-census";
 
-const createTestRender = <Definition extends CensusDefinitions<HTMLElement>>(
-  definition: Definition
+const createTestRender = <
+  Adapter extends
+    | CombinedElementAdapter<HTMLElement, any>
+    | ElementAccessorFactory<HTMLElement, any, any, any>
+>(
+  adapter: Adapter
 ) => {
-  const adapter = createDOMAdapter(definition);
-
   let container: HTMLDivElement | null;
 
   beforeEach(() => {
@@ -26,7 +28,7 @@ const createTestRender = <Definition extends CensusDefinitions<HTMLElement>>(
       ReactDOM.render(reactElement, container);
     });
 
-    return adapter(container!);
+    return adapter(container!) as ReturnType<Adapter>;
   };
 };
 

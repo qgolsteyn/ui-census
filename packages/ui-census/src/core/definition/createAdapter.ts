@@ -1,12 +1,18 @@
-import { Dict } from "../../types";
-import { CensusObject, CensusDefinitions } from "../types";
+import { Dict, Serializeable } from "../../types";
+import { ElementAccessor } from "../types";
 import { createProxy } from "../utils/proxy";
 import { querySync } from "../query/querySync";
 
-const createQueryProxy = <ElementType>(
+const createQueryProxy = <
+  ElementType,
+  Queries extends { [key: string]: (element: ElementType) => Serializeable },
+  Actions extends {
+    [key: string]: (element: ElementType) => (...args: any[]) => any;
+  }
+>(
   element: ElementType,
-  queryResolver: Dict<(element: ElementType) => any>,
-  actionResolver: Dict<(element: ElementType) => any>
+  queryResolver: Queries,
+  actionResolver: Actions
 ) => {
   const combinedResolvers = { ...queryResolver, ...actionResolver };
   const handler: ProxyHandler<Dict> = {
@@ -23,34 +29,38 @@ const createQueryProxy = <ElementType>(
     handler,
     Object.keys(queryResolver),
     Object.keys(combinedResolvers)
-  );
+  ) as { [Key in keyof Queries]: ReturnType<Queries[Key]> } &
+    { [Key in keyof Actions]: ReturnType<Actions[Key]> };
 };
 
 const createAdapter = <
-  ElementType,
-  Definition extends CensusDefinitions<ElementType>
->(
-  definition: Definition
-) => (target: ElementType) => {
-  const doc: any = {};
-
-  for (const key in definition) {
-    doc[key] = (...args: any[]) => {
-      return querySync(
-        definition[key]
-          .selector(target, args)
-          .map((element) =>
-            createQueryProxy(
-              element,
-              definition[key].queries,
-              definition[key].actions
-            )
-          )
-      );
-    };
+  ElementTypeIn,
+  ElementTypeOut,
+  QueryParameters extends Array<any>,
+  Queries extends { [key: string]: Serializeable },
+  Actions extends {
+    [key: string]: (...args: any[]) => any;
   }
-
-  return doc as CensusObject<Definition>;
-};
+>(
+  selector: (
+    target: ElementTypeIn,
+    ...args: QueryParameters
+  ) => ElementTypeOut[],
+  queries: {
+    [Key in keyof Queries]: (element: ElementTypeOut) => Queries[Key];
+  },
+  actions: {
+    [Key in keyof Actions]: (element: ElementTypeOut) => Actions[Key];
+  }
+) => (
+  target: ElementTypeIn
+): ElementAccessor<QueryParameters, Queries, Actions> => (
+  ...args: QueryParameters
+) =>
+  querySync(
+    selector(target, ...args).map((element) =>
+      createQueryProxy(element, queries, actions)
+    )
+  );
 
 export default createAdapter;

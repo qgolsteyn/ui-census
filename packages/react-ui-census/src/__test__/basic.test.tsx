@@ -1,19 +1,20 @@
+import { createDOMAdapter } from "dom-ui-census";
 import React from "react";
 import { createReactAdapter } from "..";
 
-const b = createReactAdapter({
-  div: {
-    selector: (target) => {
-      let elements = Array.from(target.querySelectorAll("div"));
+const adapter = createDOMAdapter(
+  (target) => {
+    let elements = Array.from(target.querySelectorAll("div"));
 
-      return elements;
-    },
-    queries: {
-      text: (element) => element.textContent,
-    },
-    actions: {},
+    return elements;
   },
-});
+  {
+    text: (element) => element.textContent,
+  },
+  {}
+);
+
+const divReactAdapter = createReactAdapter(adapter);
 
 let container: HTMLDivElement | null;
 
@@ -28,13 +29,13 @@ afterEach(() => {
 });
 
 test("it handles a basic query", () => {
-  const doc = b(<div>Test 1</div>, container!);
+  const divAccessor = divReactAdapter(<div>Test 1</div>, container!);
 
-  expect(doc.div().single().text).toBe("Test 1");
+  expect(divAccessor().single().text).toBe("Test 1");
 });
 
 test("it handles a query by prop with mapping", () => {
-  const doc = b(
+  const divAccessor = divReactAdapter(
     <>
       <div>1</div>
       <div>2</div>
@@ -44,21 +45,20 @@ test("it handles a query by prop with mapping", () => {
   );
 
   expect(
-    doc
-      .div()
+    divAccessor()
       .all()
       .map((node) => node.text)
   ).toStrictEqual(["1", "2", "3"]);
 });
 
 test("it supports snapshot testing", () => {
-  const doc = b(<div id="test">Test 4</div>, container!);
+  const divAccessor = divReactAdapter(<div id="test">Test 4</div>, container!);
 
-  expect(doc.div().all()).toMatchSnapshot();
+  expect(divAccessor().all()).toMatchSnapshot();
 });
 
 test("it supports snapshot testing with multiple elements", () => {
-  const doc = b(
+  const divAccessor = divReactAdapter(
     <>
       <div id="test">Test 1</div>
       <div id="test">Test 2</div>
@@ -69,5 +69,5 @@ test("it supports snapshot testing with multiple elements", () => {
     container!
   );
 
-  expect(doc.div().all()).toMatchSnapshot();
+  expect(divAccessor().all()).toMatchSnapshot();
 });

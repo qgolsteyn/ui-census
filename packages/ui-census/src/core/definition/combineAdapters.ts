@@ -1,43 +1,19 @@
 import { Dict } from "../../types";
-import {
-  CensusObject,
-  CensusObjectAsync,
-  CensusDefinition,
-  CensusDefinitionAsync,
-} from "../types";
+import { ElementAccessorFactory, CombinedElementAdapter } from "../types";
 
-export const combineAsyncAdapters = <
+const combineAdapters = <
   ElementType,
-  M extends Dict<
-    (
-      target: ElementType
-    ) => CensusObjectAsync<Dict<CensusDefinitionAsync<ElementType>>>
-  >
+  M extends Dict<ElementAccessorFactory<ElementType, any, any, any>>
 >(
   adapters: M
-) => {
-  return (target: ElementType) => {
-    const combinedAdapter = {} as any;
-    for (const key in adapters) {
-      combinedAdapter[key] = adapters[key](target) as any;
-    }
-    return combinedAdapter as { [Key in keyof M]: ReturnType<M[Key]> };
-  };
+): CombinedElementAdapter<ElementType, M> => (target: ElementType) => {
+  const combinedAdapter: any = {};
+
+  for (const key in adapters) {
+    combinedAdapter[key] = adapters[key](target);
+  }
+
+  return combinedAdapter;
 };
 
-export const combineAdapters = <
-  ElementType,
-  M extends Dict<
-    (target: ElementType) => CensusObject<Dict<CensusDefinition<ElementType>>>
-  >
->(
-  adapters: M
-) => {
-  return (target: ElementType) => {
-    const combinedAdapter = {} as any;
-    for (const key in adapters) {
-      combinedAdapter[key] = adapters[key](target) as any;
-    }
-    return combinedAdapter as { [Key in keyof M]: ReturnType<M[Key]> };
-  };
-};
+export default combineAdapters;

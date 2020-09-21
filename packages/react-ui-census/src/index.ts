@@ -2,12 +2,12 @@ import createReactAdapter from "./createReactAdapter";
 import createTestRender from "./createTestRender";
 
 export {
-  CensusObject,
-  CensusDefinitions,
-  CensusDefinition,
+  ElementAccessor,
+  ElementAccessorFactory,
+  CombinedElementAdapter,
   combineDOMAdapters,
-  createDOMDefinition,
   createDOMAdapter,
+  baseAdapter,
 } from "dom-ui-census";
 
 export { createReactAdapter, createTestRender };
