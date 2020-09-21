@@ -2,3 +2,7 @@ node_modules
 **/lib
 **/tsconfig.tsbuildinfo
 **/.tsc
+
+# Jest
+coverage
+**/coverage

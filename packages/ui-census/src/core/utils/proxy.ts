@@ -24,9 +24,6 @@ const createBaseProxyHandler = (keys: Index[]): ProxyHandler<Dict> => ({
       return undefined;
     }
   },
-  defineProperty: () => {
-    return false;
-  },
 });
 
 export const createProxy = (

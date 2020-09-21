@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "rimraf packages/*/.tsc && rimraf packages/*/lib",
     "build": "tsc --build",
-    "test": "jest --config=jest.config.json",
+    "test": "jest --config=jest.config.json --coverage",
     "prerelease": "yarn build && oao prepublish"
   },
   "workspaces": [
