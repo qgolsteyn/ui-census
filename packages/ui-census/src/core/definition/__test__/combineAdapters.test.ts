@@ -12,12 +12,14 @@ test("it combines two synchronous adapters", () => {
       wordText: (element: string) => element,
       length: (element: string) => element.length,
     },
-    {}
+    {
+      getElement: (element: string) => () => element,
+    }
   );
 
   const sentenceAdapter = createAdapter(
     (target: string) => {
-      let elements = target.split(".");
+      let elements = target.split(". ");
 
       return elements;
     },
@@ -25,7 +27,9 @@ test("it combines two synchronous adapters", () => {
       sentenceText: (element: string) => element,
       length: (element: string) => element.length,
     },
-    {}
+    {
+      getElement: (element: string) => () => element,
+    }
   );
 
   const adapter = combineAdapters({
@@ -37,4 +41,7 @@ test("it combines two synchronous adapters", () => {
 
   expect(doc.sentence().first().sentenceText).toBe("This is a sentence");
   expect(doc.word().last().wordText).toBe("sentence.");
+
+  const secondSentence = doc.sentence().last();
+  expect(adapter(secondSentence).word().first().wordText).toBe("It");
 });

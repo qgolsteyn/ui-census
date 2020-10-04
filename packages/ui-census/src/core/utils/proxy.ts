@@ -1,7 +1,5 @@
 import type { Dict, Index } from "../../types";
 
-export const ALL_VALID_KEYS = Symbol("all_valid_keys");
-
 /**
  * This function generates a generic handler for proxy objects
  * used in this library. It can later be overriden to cover specific
@@ -26,13 +24,6 @@ const createBaseProxyHandler = (keys: Index[]): ProxyHandler<Dict> => ({
   },
 });
 
-export const createProxy = (
-  handler: ProxyHandler<{}>,
-  keys: Index[],
-  allValidKeys: Index[]
-) => {
-  return new Proxy(
-    { [ALL_VALID_KEYS]: allValidKeys },
-    { ...handler, ...createBaseProxyHandler(keys) }
-  );
+export const createProxy = (handler: ProxyHandler<{}>, keys: Index[]) => {
+  return new Proxy({}, { ...handler, ...createBaseProxyHandler(keys) });
 };

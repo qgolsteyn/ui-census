@@ -16,20 +16,18 @@ const createQueryProxy = <
 ) => {
   const combinedResolvers = { ...queryResolver, ...actionResolver };
   const handler: ProxyHandler<Dict> = {
-    get: (_, p) => {
+    get: (obj, p) => {
       if (typeof p === "string" && p in combinedResolvers) {
         return combinedResolvers[p](element);
       } else {
-        return undefined;
+        return obj[p as any];
       }
     },
   };
 
-  return createProxy(
-    handler,
-    Object.keys(queryResolver),
-    Object.keys(combinedResolvers)
-  ) as { [Key in keyof Queries]: ReturnType<Queries[Key]> } &
+  return createProxy(handler, Object.keys(queryResolver)) as {
+    [Key in keyof Queries]: ReturnType<Queries[Key]>;
+  } &
     { [Key in keyof Actions]: ReturnType<Actions[Key]> };
 };
 
@@ -53,14 +51,22 @@ const createAdapter = <
     [Key in keyof Actions]: (element: ElementTypeOut) => Actions[Key];
   }
 ) => (
-  target: ElementTypeIn
+  target: ElementTypeIn | { getElement: () => ElementTypeIn }
 ): ElementAccessor<QueryParameters, Queries, Actions> => (
   ...args: QueryParameters
-) =>
-  querySync(
-    selector(target, ...args).map((element) =>
+) => {
+  let targetElement;
+  if (typeof target === "object" && (target as any).getElement !== undefined) {
+    targetElement = (target as any).getElement();
+  } else {
+    targetElement = target;
+  }
+
+  return querySync(
+    selector(targetElement, ...args).map((element) =>
       createQueryProxy(element, queries, actions)
     )
   );
+};
 
 export default createAdapter;

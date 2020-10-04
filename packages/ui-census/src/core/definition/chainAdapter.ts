@@ -27,8 +27,11 @@ const chainAdapter = <
   }
 ) => {
   const chainedFactory = createAdapter(selector, queries, actions);
-  return (target: Parameters<AccessorFactory>[0]) =>
-    chainedFactory(accessorFactory(target) as any);
+  return (
+    target:
+      | Parameters<AccessorFactory>[0]
+      | { getElement: () => Parameters<AccessorFactory>[0] }
+  ) => chainedFactory(accessorFactory(target) as any);
 };
 
 export default chainAdapter;
