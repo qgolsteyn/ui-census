@@ -23,12 +23,23 @@ const createTestRender = <
     container = null;
   });
 
-  return (reactElement: React.ReactElement) => {
-    act(() => {
-      ReactDOM.render(reactElement, container);
-    });
+  return (
+    target: React.ReactElement | Element | { getElement: () => Element }
+  ) => {
+    if (target instanceof Element) {
+      return adapter(target as any) as ReturnType<Adapter>;
+    } else if (
+      typeof target === "object" &&
+      (target as any).getElement !== undefined
+    ) {
+      return adapter((target as any).getElement()) as ReturnType<Adapter>;
+    } else {
+      act(() => {
+        ReactDOM.render(target as any, container);
+      });
 
-    return adapter(container!) as ReturnType<Adapter>;
+      return adapter(container!) as ReturnType<Adapter>;
+    }
   };
 };
 

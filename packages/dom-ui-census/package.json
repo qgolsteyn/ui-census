@@ -26,5 +26,9 @@
   "dependencies": {
     "csstype": "^3.0.3",
     "ui-census": "^0.0.15"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^7.24.3",
+    "@testing-library/user-event": "^12.1.7"
   }
 }

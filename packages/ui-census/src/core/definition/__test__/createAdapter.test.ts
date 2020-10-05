@@ -10,7 +10,24 @@ const wordAdapter = createAdapter(
     text: (element) => element,
     length: (element) => element.length,
   },
-  {}
+  {
+    getElement: (element) => () => element,
+  }
+);
+
+const sentenceAdapter = createAdapter(
+  (target: string) => {
+    let elements = target.split(". ");
+
+    return elements;
+  },
+  {
+    text: (element) => element,
+    length: (element) => element.length,
+  },
+  {
+    getElement: (element) => () => element,
+  }
 );
 
 test("it handles a basic query", () => {
@@ -56,4 +73,16 @@ test("it handles a simple filter", () => {
   const match = wordAccessor().contains({ text: "amet" }).single();
 
   expect(match).toMatchObject({ length: 4 });
+});
+
+test("it handles an accessor object passed as target", () => {
+  const sentenceAccessor = sentenceAdapter(
+    "This is a sentence. And this is another sentence."
+  );
+
+  const secondSentence = sentenceAccessor().last();
+
+  const wordAccessor = wordAdapter(secondSentence);
+
+  expect(wordAccessor().first().text).toBe("And");
 });

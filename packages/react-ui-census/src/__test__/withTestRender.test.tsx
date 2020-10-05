@@ -1,4 +1,4 @@
-import { createDOMAdapter } from "dom-ui-census";
+import { createDOMAdapter, htmlAdapter } from "dom-ui-census";
 import React from "react";
 import { createTestRender } from "..";
 
@@ -15,6 +15,8 @@ const adapter = createDOMAdapter(
 );
 
 const divReactAdapter = createTestRender(adapter);
+
+const $ = createTestRender(htmlAdapter);
 
 test("it handles a basic query", () => {
   const divAccessor = divReactAdapter(<div>Test 1</div>);
