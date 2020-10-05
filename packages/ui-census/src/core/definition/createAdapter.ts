@@ -51,22 +51,14 @@ const createAdapter = <
     [Key in keyof Actions]: (element: ElementTypeOut) => Actions[Key];
   }
 ) => (
-  target: ElementTypeIn | { getElement: () => ElementTypeIn }
+  target: ElementTypeIn
 ): ElementAccessor<QueryParameters, Queries, Actions> => (
   ...args: QueryParameters
-) => {
-  let targetElement;
-  if (typeof target === "object" && (target as any).getElement !== undefined) {
-    targetElement = (target as any).getElement();
-  } else {
-    targetElement = target;
-  }
-
-  return querySync(
-    selector(targetElement, ...args).map((element) =>
+) =>
+  querySync(
+    selector(target, ...args).map((element) =>
       createQueryProxy(element, queries, actions)
     )
   );
-};
 
 export default createAdapter;

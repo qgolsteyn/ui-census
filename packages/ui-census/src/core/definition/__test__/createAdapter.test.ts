@@ -74,15 +74,3 @@ test("it handles a simple filter", () => {
 
   expect(match).toMatchObject({ length: 4 });
 });
-
-test("it handles an accessor object passed as target", () => {
-  const sentenceAccessor = sentenceAdapter(
-    "This is a sentence. And this is another sentence."
-  );
-
-  const secondSentence = sentenceAccessor().last();
-
-  const wordAccessor = wordAdapter(secondSentence);
-
-  expect(wordAccessor().first().text).toBe("And");
-});

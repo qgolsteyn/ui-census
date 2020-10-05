@@ -6,6 +6,15 @@ const combineDOMAdapters = <
   M extends Dict<ElementAccessorFactory<Element, any, any, any>>
 >(
   adapters: M
-) => combineAdapters<Element, M>(adapters);
+) => {
+  const combinedAdapter = combineAdapters<Element, M>(adapters);
+  return (target: Element | { getElement: () => Element }) => {
+    if (target instanceof Element) {
+      return combinedAdapter(target);
+    } else {
+      return combinedAdapter(target.getElement());
+    }
+  };
+};
 
 export default combineDOMAdapters;

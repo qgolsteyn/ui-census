@@ -15,10 +15,19 @@ const createDOMAdapter = <
   actions: {
     [Key in keyof Actions]: (element: Element) => Actions[Key];
   }
-) =>
-  createAdapter(selector, queries, {
+) => {
+  const adapter = createAdapter(selector, queries, {
     ...actions,
     getElement: (element) => () => element,
   });
+
+  return (target: Element | { getElement: () => Element }) => {
+    if (target instanceof Element) {
+      return adapter(target);
+    } else {
+      return adapter(target.getElement());
+    }
+  };
+};
 
 export default createDOMAdapter;

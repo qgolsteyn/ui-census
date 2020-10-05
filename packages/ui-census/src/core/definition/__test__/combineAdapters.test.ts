@@ -41,7 +41,4 @@ test("it combines two synchronous adapters", () => {
 
   expect(doc.sentence().first().sentenceText).toBe("This is a sentence");
   expect(doc.word().last().wordText).toBe("sentence.");
-
-  const secondSentence = doc.sentence().last();
-  expect(adapter(secondSentence).word().first().wordText).toBe("It");
 });
