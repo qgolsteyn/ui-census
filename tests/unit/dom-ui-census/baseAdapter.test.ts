@@ -1,6 +1,6 @@
 import fc from "fast-check";
-import baseAdapter from "../baseAdapter";
-import { globalHTMLAttrArb } from "./htmlFixtures";
+import { baseAdapter } from "dom-ui-census";
+import { globalHTMLAttrArb } from "../__fixtures__/htmlFixtures";
 
 let container: HTMLDivElement;
 
@@ -59,7 +59,9 @@ describe("base adapter", () => {
           .property(globalHTMLAttrArb, (attr) => {
             const divElement = document.createElement("div");
             for (const key in attr) {
-              if (attr[key as keyof typeof attr] !== undefined) {
+              if (attr[key as keyof typeof attr] === false) {
+                divElement.removeAttribute(key.toLowerCase());
+              } else if (attr[key as keyof typeof attr] !== undefined) {
                 divElement.setAttribute(
                   key.toLowerCase(),
                   String(attr[key as keyof typeof attr])

@@ -1,5 +1,5 @@
 import { Dict } from "ui-census/src/types";
-import { querySync } from "../querySync";
+import { querySync } from "ui-census/src/core/query/querySync";
 
 const inputArrayMulti = [
   { text: "this" },

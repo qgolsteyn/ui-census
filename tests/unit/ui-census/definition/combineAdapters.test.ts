@@ -1,5 +1,5 @@
-import combineAdapters from "../combineAdapters";
-import createAdapter from "../createAdapter";
+import combineAdapters from "ui-census/src/core/definition/combineAdapters";
+import createAdapter from "ui-census/src/core/definition/createAdapter";
 
 test("it combines two synchronous adapters", () => {
   const wordAdapter = createAdapter(

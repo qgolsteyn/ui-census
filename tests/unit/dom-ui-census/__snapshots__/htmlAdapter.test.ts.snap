@@ -912,30 +912,6 @@ Object {
 }
 `;
 
-exports[`html adapter img - simple queries should matches snapshot 1`] = `
-Object {
-  "accessKey": "",
-  "classNames": Array [],
-  "contentEditable": undefined,
-  "dataAttributes": DOMStringMap {},
-  "dir": "",
-  "draggable": true,
-  "hidden": false,
-  "id": "test",
-  "inputMode": undefined,
-  "lang": "",
-  "style": CSSStyleDeclaration {
-    "_importants": Object {},
-    "_length": 0,
-    "_onChange": [Function],
-    "_values": Object {},
-  },
-  "tabIndex": -1,
-  "textContent": "",
-  "title": "",
-}
-`;
-
 exports[`html adapter ins - simple queries should matches snapshot 1`] = `
 Object {
   "accessKey": "",

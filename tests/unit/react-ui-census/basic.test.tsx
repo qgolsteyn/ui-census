@@ -1,6 +1,6 @@
 import { createDOMAdapter } from "dom-ui-census";
 import React from "react";
-import { createReactAdapter } from "..";
+import { createReactAdapter } from "react-ui-census";
 
 const adapter = createDOMAdapter(
   (target) => {

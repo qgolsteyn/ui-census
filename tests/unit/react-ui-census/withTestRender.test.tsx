@@ -1,6 +1,6 @@
 import { createDOMAdapter, htmlAdapter } from "dom-ui-census";
 import React from "react";
-import { createTestRender } from "..";
+import { createTestRender } from "react-ui-census";
 
 const adapter = createDOMAdapter(
   (target) => {

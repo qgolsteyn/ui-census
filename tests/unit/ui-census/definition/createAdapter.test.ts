@@ -1,4 +1,4 @@
-import createAdapter from "../createAdapter";
+import createAdapter from "ui-census/src/core/definition/createAdapter";
 
 const wordAdapter = createAdapter(
   (target: string) => {

@@ -1,8 +1,8 @@
-import { matches } from "../queries";
+import { matches } from "ui-census/src/core/query/queries";
 
 describe("matches", () => {
   test("it handles an empty array", () => {
-    const result = matches([], { test: "test" });
+    const result = matches([] as Array<{ test: string }>, { test: "test" });
 
     expect(result).toEqual([]);
   });

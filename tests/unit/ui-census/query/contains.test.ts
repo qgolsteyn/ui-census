@@ -1,9 +1,8 @@
-import { contains } from "../queries";
+import { contains } from "ui-census/src/core/query/queries";
 
 describe("contains", () => {
   test("it handles an empty array", () => {
-    //@ts-expect-error
-    const result = contains([], { test: "test" });
+    const result = contains([] as Array<{ test: string }>, { test: "test" });
 
     expect(result).toEqual([]);
   });

@@ -85,5 +85,4 @@ export const basicHTMLElement = [
   "del",
   "ins",
   "button",
-  "img",
 ];

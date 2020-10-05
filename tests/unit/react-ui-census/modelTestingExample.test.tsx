@@ -2,7 +2,7 @@ import React from "react";
 import fc from "fast-check";
 
 import { htmlAdapter } from "dom-ui-census";
-import { createTestRender } from "..";
+import { createTestRender } from "react-ui-census";
 
 const $ = createTestRender(htmlAdapter);
 
