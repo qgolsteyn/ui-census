@@ -16,14 +16,6 @@ const createBasicHTMLElementAdapter = (elementName: string) =>
        * The browser should use the first one that exists on the computer keyboard layout.
        */
       accessKey: (element) => element.getElement().accessKey,
-      /**
-       * Controls whether and how text input is automatically capitalized as it is entered/edited by the user. It can have the following values:
-       * - **off or none**, no autocapitalization is applied (all letters default to lowercase)
-       * - **on or sentences**, the first letter of each sentence defaults to a capital letter; all other letters default to lowercase-
-       * - **words**, the first letter of each word defaults to a capital letter; all other letters default to lowercase
-       * - **characters**, all letters should default to uppercase
-       */
-      autoCapitalize: (element) => element.getElement().autocapitalize as any,
       /** List of the classes of the element */
       classNames: (element) => Array.from(element.getElement().classList),
       /**
@@ -31,13 +23,8 @@ const createBasicHTMLElementAdapter = (elementName: string) =>
        * **true**, which indicates that the element must be editable;
        * **false**, which indicates that the element must not be editable.
        */
-      contentEditable: (element) => {
-        if (element.getElement().contentEditable === "false") {
-          return false;
-        } else {
-          return true;
-        }
-      },
+      contentEditable: (element) =>
+        (element.getElement() as HTMLElement).contentEditable,
       /**
        * Forms a class of attributes, called custom data attributes,
        * that allow proprietary information to be exchanged between the HTML and its DOM representation that may be used by scripts.
@@ -74,12 +61,6 @@ const createBasicHTMLElementAdapter = (elementName: string) =>
        * Helps define the language of an element: the language that non-editable elements are in, or the language that editable elements should be written in by the user.
        */
       lang: (element) => element.getElement().lang,
-      /**
-       * An enumerated attribute defines whether the element may be checked for spelling errors. It may have the following values:
-       * **true**, which indicates that the element should be, if possible, checked for spelling errors;
-       * **false**, which indicates that the element should not be checked for spelling errors.
-       */
-      spellcheck: (element) => element.getElement().spellcheck,
       /**
        * Contains inline CSS styling declarations to be applied to the element.
        */
