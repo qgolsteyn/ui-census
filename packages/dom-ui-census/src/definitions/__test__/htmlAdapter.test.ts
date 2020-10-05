@@ -1,10 +1,10 @@
 import fc from "fast-check";
-import baseAdapter from "../baseAdapter";
-import { globalHTMLAttrArb } from "./htmlFixtures";
+import htmlAdapter from "../htmlAdapter";
+import { basicHTMLElement, globalHTMLAttrArb } from "./htmlFixtures";
 
 let container: HTMLDivElement;
 
-describe("base adapter", () => {
+describe("html adapter", () => {
   beforeEach(() => {
     container = document.createElement("div");
     document.body.appendChild(container!);
@@ -14,50 +14,34 @@ describe("base adapter", () => {
     document.body.removeChild(container!);
   });
 
-  describe("simple queries", () => {
+  describe.each(basicHTMLElement)("%s - simple queries", (tagName) => {
     it("should handle a simple query", () => {
-      const divElement = document.createElement("div");
+      const divElement = document.createElement(tagName);
       divElement.id = "test";
       container.appendChild(divElement);
 
-      const doc = baseAdapter(container);
+      const doc = htmlAdapter(container) as any;
 
-      expect(doc.query("div").single().isHTMLElement).toBe(true);
-      expect(doc.queryHTML("div").single().id).toBe("test");
-    });
-
-    it("should handle a non HTML element", () => {
-      const svgElement = document.createElementNS(
-        "http://www.w3.org/2000/svg",
-        "svg"
-      );
-      svgElement.id = "test";
-      container.appendChild(svgElement);
-
-      const doc = baseAdapter(container);
-
-      expect(doc.query("svg").single().id).toBe("test");
-      expect(doc.queryHTML("svg").all()).toEqual([]);
+      expect(doc[tagName as keyof typeof doc]().single().id).toBe("test");
     });
 
     it("should matches snapshot", () => {
-      const divElement = document.createElement("div");
+      const divElement = document.createElement(tagName);
       divElement.id = "test";
       container.appendChild(divElement);
 
-      const doc = baseAdapter(container);
+      const doc = htmlAdapter(container) as any;
 
-      expect(doc.query("div").single()).toMatchSnapshot();
-      expect(doc.queryHTML("div").single()).toMatchSnapshot();
+      expect(doc[tagName as keyof typeof doc]().single()).toMatchSnapshot();
     });
   });
 
-  describe("attribute check", () => {
+  describe.each(basicHTMLElement)("%s - attribute check", (tagName) => {
     it("should allow to retrieve attribute data from an HTML element", () => {
       fc.assert(
         fc
           .property(globalHTMLAttrArb, (attr) => {
-            const divElement = document.createElement("div");
+            const divElement = document.createElement(tagName);
             for (const key in attr) {
               if (attr[key as keyof typeof attr] !== undefined) {
                 divElement.setAttribute(
@@ -71,8 +55,10 @@ describe("base adapter", () => {
             }
             container.appendChild(divElement);
 
-            const doc = baseAdapter(container);
-            expect(doc.queryHTML("div").single()).toMatchObject(attr);
+            const doc = htmlAdapter(container) as any;
+            expect(doc[tagName as keyof typeof doc]().single()).toMatchObject(
+              attr
+            );
           })
           .afterEach(() => {
             document.body.removeChild(container!);

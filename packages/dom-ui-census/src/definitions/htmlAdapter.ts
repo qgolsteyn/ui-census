@@ -83,7 +83,6 @@ const createBasicHTMLElementAdapter = (elementName: string) =>
       title: (element) => element.getElement().title,
     },
     {
-      getElement: (element) => () => element.getElement() as HTMLElement,
       click: (element) => (
         mouseEventInit?: MouseEventInit,
         options?: IClickOptions

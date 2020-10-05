@@ -1,0 +1,1657 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`html adapter a - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": 0,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter abbr - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter address - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter area - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": 0,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter article - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter aside - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter audio - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter b - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter bdi - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter bdo - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter blockquote - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter br - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter button - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": 0,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter cite - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter code - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter data - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter dd - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter del - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter dfn - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter div - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter dl - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter dt - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter em - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter embed - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter figcaption - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter figure - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter footer - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter h1 - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter h2 - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter h3 - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter h4 - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter h5 - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter h6 - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter header - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter hgroup - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter hr - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter i - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter iframe - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": 0,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter img - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": true,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter ins - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter kbd - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter li - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter main - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter map - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter mark - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter nav - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter object - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": 0,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter ol - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter p - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter param - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter picture - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter pre - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter q - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter s - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter samp - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter section - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter small - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter source - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter span - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter strong - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter sub - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter sup - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter time - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter track - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter u - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter ul - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter var - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter video - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
+
+exports[`html adapter wbr - simple queries should matches snapshot 1`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "textContent": "",
+  "title": "",
+}
+`;
