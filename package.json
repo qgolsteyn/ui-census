@@ -28,6 +28,7 @@
     "@types/react": "^16.9.46",
     "@types/react-dom": "^16.9.8",
     "chromedriver": "^85.0.0",
+    "fast-check": "^2.4.0",
     "jest": "^26.4.0",
     "oao": "^2.0.0",
     "rimraf": "^3.0.2",
