@@ -16,5 +16,8 @@ export type ElementAccessorFactory<
 
 export type CombinedElementAdapter<
   ElementType,
-  M extends Dict<ElementAccessorFactory<ElementType, any, any, any>>
+  M extends Dict<
+    | ElementAccessorFactory<ElementType, any, any, any>
+    | CombinedElementAdapter<ElementType, any>
+  >
 > = (target: ElementType) => { [Key in keyof M]: ReturnType<M[Key]> };

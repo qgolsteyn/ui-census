@@ -3,7 +3,10 @@ import { ElementAccessorFactory, CombinedElementAdapter } from "../types";
 
 const combineAdapters = <
   ElementType,
-  M extends Dict<ElementAccessorFactory<ElementType, any, any, any>>
+  M extends Dict<
+    | ElementAccessorFactory<ElementType, any, any, any>
+    | CombinedElementAdapter<ElementType, any>
+  >
 >(
   adapters: M
 ): CombinedElementAdapter<ElementType, M> => (target: ElementType) => {

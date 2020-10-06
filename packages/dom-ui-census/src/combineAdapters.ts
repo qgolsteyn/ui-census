@@ -1,9 +1,15 @@
 import { combineAdapters } from "ui-census";
-import { ElementAccessorFactory } from "ui-census/lib/core/types";
+import {
+  CombinedElementAdapter,
+  ElementAccessorFactory,
+} from "ui-census/lib/core/types";
 import { Dict } from "ui-census/lib/types";
 
 const combineDOMAdapters = <
-  M extends Dict<ElementAccessorFactory<Element, any, any, any>>
+  M extends Dict<
+    | ElementAccessorFactory<Element, any, any, any>
+    | CombinedElementAdapter<Element, any>
+  >
 >(
   adapters: M
 ) => {
