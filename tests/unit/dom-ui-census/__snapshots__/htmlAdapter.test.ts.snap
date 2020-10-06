@@ -192,6 +192,36 @@ Object {
 }
 `;
 
+exports[`html adapter base adapter accessors should matches snapshot 1`] = `
+Object {
+  "id": "test",
+  "isHTMLElement": true,
+}
+`;
+
+exports[`html adapter base adapter accessors should matches snapshot 2`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "title": "",
+}
+`;
+
 exports[`html adapter bdi - simple queries should matches snapshot 1`] = `
 Object {
   "accessKey": "",

@@ -17,6 +17,44 @@ describe("html adapter", () => {
     document.body.removeChild(container!);
   });
 
+  describe("base adapter accessors", () => {
+    it("should handle a simple query", () => {
+      const divElement = document.createElement("div");
+      divElement.id = "test";
+      container.appendChild(divElement);
+
+      const doc = htmlAdapter(container);
+
+      expect(doc.query("div").single().isHTMLElement).toBe(true);
+      expect(doc.queryHTML("div").single().id).toBe("test");
+    });
+
+    it("should handle a non HTML element", () => {
+      const svgElement = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "svg"
+      );
+      svgElement.id = "test";
+      container.appendChild(svgElement);
+
+      const doc = htmlAdapter(container);
+
+      expect(doc.query("svg").single().id).toBe("test");
+      expect(doc.queryHTML("svg").all()).toEqual([]);
+    });
+
+    it("should matches snapshot", () => {
+      const divElement = document.createElement("div");
+      divElement.id = "test";
+      container.appendChild(divElement);
+
+      const doc = htmlAdapter(container);
+
+      expect(doc.query("div").single()).toMatchSnapshot();
+      expect(doc.queryHTML("div").single()).toMatchSnapshot();
+    });
+  });
+
   describe.each(basicHTMLElement)("%s - simple queries", (tagName) => {
     it("should handle a simple query", () => {
       const divElement = document.createElement(tagName);
