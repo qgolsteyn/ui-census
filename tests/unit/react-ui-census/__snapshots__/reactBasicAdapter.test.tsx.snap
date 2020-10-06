@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base adapter simple queries should matches snapshot 1`] = `
+Object {
+  "id": "test",
+  "isHTMLElement": true,
+}
+`;
+
+exports[`base adapter simple queries should matches snapshot 2`] = `
+Object {
+  "accessKey": "",
+  "classNames": Array [],
+  "contentEditable": undefined,
+  "dataAttributes": DOMStringMap {},
+  "dir": "",
+  "draggable": false,
+  "hidden": false,
+  "id": "test",
+  "inputMode": undefined,
+  "lang": "",
+  "style": CSSStyleDeclaration {
+    "_importants": Object {},
+    "_length": 0,
+    "_onChange": [Function],
+    "_values": Object {},
+  },
+  "tabIndex": -1,
+  "title": "",
+}
+`;
