@@ -1,7 +1,7 @@
-import { Dict, Serializeable } from "../../types";
+import { Dict, Serializeable, Index } from "../../types";
 import { ElementAccessor } from "../types";
-import { createProxy } from "../utils/proxy";
 import { querySync } from "../query/querySync";
+import { createBaseProxyHandler } from "../utils/proxy";
 
 const createQueryProxy = <
   ElementType,
@@ -25,7 +25,10 @@ const createQueryProxy = <
     },
   };
 
-  return createProxy(handler, Object.keys(queryResolver)) as {
+  return new Proxy(
+    {},
+    { ...handler, ...createBaseProxyHandler(Object.keys(queryResolver)) }
+  ) as {
     [Key in keyof Queries]: ReturnType<Queries[Key]>;
   } &
     { [Key in keyof Actions]: ReturnType<Actions[Key]> };
@@ -54,11 +57,12 @@ const createAdapter = <
   target: ElementTypeIn
 ): ElementAccessor<QueryParameters, Queries, Actions> => (
   ...args: QueryParameters
-) =>
-  querySync(
-    selector(target, ...args).map((element) =>
-      createQueryProxy(element, queries, actions)
-    )
+) => {
+  const queryProxies = selector(target, ...args).map((element) =>
+    createQueryProxy(element, queries, actions)
   );
+
+  return querySync(queryProxies, Object.keys(queries), Object.keys(actions));
+};
 
 export default createAdapter;

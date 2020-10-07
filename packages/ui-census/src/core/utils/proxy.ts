@@ -5,7 +5,7 @@ import type { Dict, Index } from "../../types";
  * used in this library. It can later be overriden to cover specific
  * behaviour.
  */
-const createBaseProxyHandler = (keys: Index[]): ProxyHandler<Dict> => ({
+export const createBaseProxyHandler = (keys: Index[]): ProxyHandler<Dict> => ({
   ownKeys: () => {
     return keys;
   },
@@ -23,7 +23,3 @@ const createBaseProxyHandler = (keys: Index[]): ProxyHandler<Dict> => ({
     }
   },
 });
-
-export const createProxy = (handler: ProxyHandler<{}>, keys: Index[]) => {
-  return new Proxy({}, { ...handler, ...createBaseProxyHandler(keys) });
-};

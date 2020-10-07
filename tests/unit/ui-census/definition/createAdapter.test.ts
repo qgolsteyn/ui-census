@@ -15,21 +15,6 @@ const wordAdapter = createAdapter(
   }
 );
 
-const sentenceAdapter = createAdapter(
-  (target: string) => {
-    let elements = target.split(". ");
-
-    return elements;
-  },
-  {
-    text: (element) => element,
-    length: (element) => element.length,
-  },
-  {
-    getElement: (element) => () => element,
-  }
-);
-
 test("it handles a basic query", () => {
   const wordAccessor = wordAdapter("hello");
 
@@ -65,6 +50,7 @@ test("it supports snapshot testing", () => {
   const wordAccessor = wordAdapter("snapshot testing");
 
   expect(wordAccessor().all()).toMatchSnapshot();
+  expect(wordAccessor().grouped()).toMatchSnapshot();
 });
 
 test("it handles a simple filter", () => {

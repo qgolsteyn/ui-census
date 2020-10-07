@@ -12,3 +12,16 @@ Array [
   },
 ]
 `;
+
+exports[`it supports snapshot testing 2`] = `
+Object {
+  "length": Array [
+    8,
+    7,
+  ],
+  "text": Array [
+    "snapshot",
+    "testing",
+  ],
+}
+`;
