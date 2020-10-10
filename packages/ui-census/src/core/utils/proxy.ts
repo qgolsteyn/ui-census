@@ -1,4 +1,4 @@
-import type { Dict, Index } from "../../types";
+import type { Dict, Index } from "../types/helpers";
 
 /**
  * This function generates a generic handler for proxy objects
@@ -10,10 +10,10 @@ export const createBaseProxyHandler = (keys: Index[]): ProxyHandler<Dict> => ({
     return keys;
   },
   has: (_, p) => {
-    return keys.includes(p);
+    return keys.includes(p as string);
   },
   getOwnPropertyDescriptor: (_, p) => {
-    if (keys.includes(p)) {
+    if (keys.includes(p as string)) {
       return {
         enumerable: true,
         configurable: true,

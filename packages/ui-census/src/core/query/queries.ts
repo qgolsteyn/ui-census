@@ -1,6 +1,7 @@
-import { Dict } from "../../types";
+import { Dict } from "../types/helpers";
+import { UIObject } from "../types/uiObject";
 
-export const contains = <T extends Dict>(
+export const contains = <T extends UIObject>(
   elements: T[],
   schema: Partial<T>
 ): T[] => {
@@ -11,7 +12,7 @@ export const contains = <T extends Dict>(
   return filtered;
 };
 
-export const matches = <T extends Dict>(elements: T[], schema: T): T[] => {
+export const matches = <T extends UIObject>(elements: T[], schema: T): T[] => {
   return elements.filter((element) => {
     for (const key in { ...element, ...schema }) {
       if (element[key] !== schema[key]) {
@@ -22,7 +23,7 @@ export const matches = <T extends Dict>(elements: T[], schema: T): T[] => {
   });
 };
 
-export const apply = <T extends Dict>(
+export const apply = <T extends Dict<UIObject>>(
   elements: T[],
   operations: Array<(elements: T[]) => T[]>
 ) => {

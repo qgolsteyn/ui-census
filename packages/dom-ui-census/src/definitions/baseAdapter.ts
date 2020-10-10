@@ -1,11 +1,11 @@
-import { chainAdapter } from "ui-census";
-import combineDOMAdapters from "../combineAdapters";
-import createDOMAdapter from "../createDomAdapter";
+import { chainFactories, combineFactories } from "ui-census";
+import createDOMAdapter from "../createDomCensusObjectFactory";
 
 export const queryElementAdapter = createDOMAdapter(
   (target: Element, query: string) =>
     Array.from(target.querySelectorAll(query)),
   {
+    /** True is the element is a valid HTML element */
     isHTMLElement: (element) => element instanceof HTMLElement,
     /**
      * Defines a unique identifier (ID) which must be unique in the whole document.
@@ -16,7 +16,7 @@ export const queryElementAdapter = createDOMAdapter(
   {}
 );
 
-export const queryHTMLElementAdapter = chainAdapter(
+export const queryHTMLElementAdapter = chainFactories(
   queryElementAdapter,
   (query, queryStr: string) =>
     query(queryStr).contains({ isHTMLElement: true }).all(),
@@ -96,7 +96,7 @@ export const queryHTMLElementAdapter = chainAdapter(
   }
 );
 
-const baseAdapter = combineDOMAdapters({
+const baseAdapter = combineFactories({
   query: queryElementAdapter,
   queryHTML: queryHTMLElementAdapter,
 });

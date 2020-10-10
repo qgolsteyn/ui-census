@@ -1,8 +1,8 @@
-import { createDOMAdapter } from "dom-ui-census";
+import { createDomCensusObjectFactory } from "dom-ui-census";
 import React from "react";
 import { createReactAdapter } from "react-ui-census";
 
-const adapter = createDOMAdapter(
+const adapter = createDomCensusObjectFactory(
   (target) => {
     let elements = Array.from(target.querySelectorAll("div"));
 

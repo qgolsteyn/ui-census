@@ -2,11 +2,9 @@ import createReactAdapter from "./createReactAdapter";
 import createTestRender from "./createTestRender";
 
 export {
-  ElementAccessor,
-  ElementAccessorFactory,
-  CombinedElementAdapter,
-  combineDOMAdapters,
-  createDOMAdapter,
+  createDomCensusObjectFactory,
+  htmlAdapter,
+  baseAdapter,
 } from "dom-ui-census";
 
 import { baseAdapter, htmlAdapter } from "dom-ui-census";

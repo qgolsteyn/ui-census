@@ -1,33 +1,22 @@
-import { Dict } from "../../types";
+import { Dict, Serializeable } from "../types/helpers";
 
 import { matches, contains, apply } from "./queries";
 import { createBaseProxyHandler } from "../utils/proxy";
+import { Query } from "../types/queries";
+import { ActionFunction } from "../types/primitives";
+import { UIObject } from "../types/uiObject";
 
-type Operation<T extends Dict> = (elements: T[]) => T[];
+type Operation<T extends Dict<UIObject>> = (elements: T[]) => T[];
 
-export type QuerySync<Queries extends Dict, Actions extends Dict> = {
-  matches: (schema: Queries) => QuerySync<Queries, Actions>;
-  contains: (schema: Partial<Queries>) => QuerySync<Queries, Actions>;
-  single: () => Queries & Actions;
-  first: () => Queries & Actions;
-  last: () => Queries & Actions;
-  all: () => Array<Queries & Actions>;
-  grouped: () => {
-    [Key in keyof Queries]: Array<Queries[Key]>;
-  } &
-    {
-      [Key in keyof Actions]: (
-        ...args: Parameters<Actions[Key]>
-      ) => Array<ReturnType<Actions[Key]>>;
-    };
-};
-
-export const querySync = <T extends Dict>(
-  elements: T[],
+export const querySync = <
+  Properties extends Dict<Serializeable>,
+  Actions extends Dict<ActionFunction>
+>(
+  elements: UIObject<Properties, Actions>[],
   queryKeys: string[],
   actionKeys: string[],
-  operations: Operation<T>[] = []
-) => {
+  operations: Operation<UIObject<Properties, Actions>>[] = []
+): Query<Properties, Actions> => {
   return {
     matches: applyOperation(
       matches,
@@ -48,10 +37,10 @@ export const querySync = <T extends Dict>(
     last: last(elements, operations),
     all: all(elements, operations),
     grouped: grouped(elements, operations, queryKeys, actionKeys),
-  };
+  } as any;
 };
 
-const applyOperation = <T extends Dict, K extends any[]>(
+const applyOperation = <T extends UIObject, K extends any[]>(
   operation: (elements: T[], ...args: K) => T[],
   elements: T[],
   queryKeys: string[],
@@ -60,11 +49,11 @@ const applyOperation = <T extends Dict, K extends any[]>(
 ) => (...args: K) => {
   return querySync(elements, queryKeys, actionKeys, [
     ...operations,
-    (elements) => operation(elements, ...args),
+    (elements) => operation(elements as any, ...args),
   ]);
 };
 
-const single = <T extends Dict>(
+const single = <T extends UIObject>(
   elements: Array<T>,
   operations: Operation<T>[]
 ) => () => {
@@ -77,7 +66,7 @@ const single = <T extends Dict>(
   }
 };
 
-const first = <T extends Dict>(
+const first = <T extends UIObject>(
   elements: Array<T>,
   operations: Operation<T>[]
 ) => () => {
@@ -90,7 +79,7 @@ const first = <T extends Dict>(
   }
 };
 
-const last = <T extends Dict>(
+const last = <T extends UIObject>(
   elements: Array<T>,
   operations: Operation<T>[]
 ) => () => {
@@ -103,14 +92,14 @@ const last = <T extends Dict>(
   }
 };
 
-const all = <T extends Dict>(
+const all = <T extends UIObject>(
   elements: Array<T>,
   operations: Operation<T>[]
 ) => () => {
   return apply(elements, operations);
 };
 
-const grouped = <T extends Dict>(
+const grouped = <T extends UIObject>(
   elements: Array<T>,
   operations: Operation<T>[],
   queryKeys: string[],

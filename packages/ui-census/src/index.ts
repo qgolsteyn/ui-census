@@ -1,13 +1,19 @@
-import {
-  ElementAccessor,
-  ElementAccessorFactory,
-  CombinedElementAdapter,
-} from "./core/types";
+import createCensusObjectFactory from "./core/definition/createCensusObjectFactory";
+import combineFactories from "./core/definition/combineFactories";
+import chainFactories from "./core/definition/chainFactories";
 
-import createAdapter from "./core/definition/createAdapter";
-import combineAdapters from "./core/definition/combineAdapters";
-import chainAdapter from "./core/definition/chainAdapter";
+export { createCensusObjectFactory, combineFactories, chainFactories };
 
-export { ElementAccessor, ElementAccessorFactory, CombinedElementAdapter };
-
-export { createAdapter, combineAdapters, chainAdapter };
+export {
+  CensusObject,
+  CensusObjectFactory,
+  CombinedCensusObjectFactory,
+} from "./core/types/censusObject";
+export { Serializeable, Dict, Index } from "./core/types/helpers";
+export {
+  SelectorFunction,
+  PropertyDefinition,
+  ActionFunction,
+  ActionDefinition,
+} from "./core/types/primitives";
+export { UIObject } from "./core/types/uiObject";

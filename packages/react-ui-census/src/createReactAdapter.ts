@@ -1,33 +1,30 @@
 import type React from "react";
 import ReactDOM from "react-dom";
 import { act } from "react-dom/test-utils";
-
-import { CombinedElementAdapter, ElementAccessorFactory } from "dom-ui-census";
+import { CensusObjectFactory, CombinedCensusObjectFactory } from "ui-census";
 
 const createReactAdapter = <
-  Adapter extends
-    | CombinedElementAdapter<HTMLElement, any>
-    | ElementAccessorFactory<HTMLElement, any, any, any>
+  Factory extends CensusObjectFactory | CombinedCensusObjectFactory
 >(
-  adapter: Adapter
+  adapter: Factory
 ) => {
   return (
     target: React.ReactElement | Element | { getElement: () => Element },
     container: HTMLElement
   ) => {
     if (target instanceof Element) {
-      return adapter(target as any) as ReturnType<Adapter>;
+      return adapter(target as any) as ReturnType<Factory>;
     } else if (
       typeof target === "object" &&
       (target as any).getElement !== undefined
     ) {
-      return adapter((target as any).getElement()) as ReturnType<Adapter>;
+      return adapter((target as any).getElement()) as ReturnType<Factory>;
     } else {
       act(() => {
         ReactDOM.render(target as any, container);
       });
 
-      return adapter(container!) as ReturnType<Adapter>;
+      return adapter(container!) as ReturnType<Factory>;
     }
   };
 };

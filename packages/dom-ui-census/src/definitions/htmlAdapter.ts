@@ -1,4 +1,4 @@
-import { chainAdapter, combineAdapters } from "ui-census";
+import { chainFactories, combineFactories } from "ui-census";
 import userEvent, { IClickOptions } from "@testing-library/user-event";
 
 import baseAdapter, {
@@ -7,7 +7,7 @@ import baseAdapter, {
 } from "./baseAdapter";
 
 const createBasicHTMLElementAdapter = (elementName: string) =>
-  chainAdapter(
+  chainFactories(
     baseAdapter,
     (target) => target.queryHTML(elementName).all(),
     {
@@ -20,7 +20,7 @@ const createBasicHTMLElementAdapter = (elementName: string) =>
       classNames: (element) => Array.from(element.getElement().classList),
       /**
        * An enumerated attribute indicating if the element should be editable by the user. If so, the browser modifies its widget to allow editing. The attribute must take one of the following values:
-       * **true**, which indicates that the element must be editable;
+       * **true**, which indicates that the element must be editable;s
        * **false**, which indicates that the element must not be editable.
        */
       contentEditable: (element) =>
@@ -98,7 +98,7 @@ const createBasicHTMLElementAdapter = (elementName: string) =>
     }
   );
 
-const htmlAdapter = combineAdapters({
+const htmlAdapter = combineFactories({
   query: queryElementAdapter,
   queryHTML: queryHTMLElementAdapter,
   /**

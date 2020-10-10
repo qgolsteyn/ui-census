@@ -1,4 +1,4 @@
-import { Dict } from "ui-census/src/types";
+import { Dict, UIObject } from "ui-census";
 import { querySync } from "ui-census/src/core/query/querySync";
 
 const inputArrayMulti = [
@@ -6,9 +6,9 @@ const inputArrayMulti = [
   { text: "is" },
   { text: "a" },
   { text: "test" },
-];
+] as UIObject[];
 
-const inputArraySingle = [{ text: "Just one element" }];
+const inputArraySingle = [{ text: "Just one element" }] as UIObject[];
 
 const inputArrayNoElements: Dict[] = [];
 
