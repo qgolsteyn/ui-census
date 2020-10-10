@@ -1,5 +1,5 @@
-import combineAdapters from "ui-census/src/core/definition/combineFactories";
-import createAdapter from "ui-census/src/core/definition/createCensusObjectFactory";
+import combineAdapters from "ui-census/src/definition/combineFactories";
+import createAdapter from "ui-census/src/definition/createCensusObjectFactory";
 
 it("should combine two adapters", () => {
   const wordAdapter = createAdapter(

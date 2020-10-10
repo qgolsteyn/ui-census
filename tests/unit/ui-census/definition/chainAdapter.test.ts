@@ -1,6 +1,6 @@
-import combineAdapters from "ui-census/src/core/definition/combineFactories";
-import createAdapter from "ui-census/src/core/definition/createCensusObjectFactory";
-import chainAdapter from "ui-census/src/core/definition/chainFactories";
+import combineAdapters from "ui-census/src/definition/combineFactories";
+import createAdapter from "ui-census/src/definition/createCensusObjectFactory";
+import chainAdapter from "ui-census/src/definition/chainFactories";
 
 test("it chains an adapter", () => {
   const sentenceAdapter = createAdapter(

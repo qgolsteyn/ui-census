@@ -1,4 +1,4 @@
-import { contains } from "ui-census/src/core/query/queries";
+import { contains } from "ui-census/src/query/queries";
 
 describe("contains", () => {
   test("it handles an empty array", () => {

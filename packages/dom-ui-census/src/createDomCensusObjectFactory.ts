@@ -4,12 +4,10 @@ import {
   Dict,
   SelectorFunction,
   Serializeable,
-} from "ui-census";
-import {
   GetElementOut,
   ToActionDefinition,
   ToPropertyDefinition,
-} from "ui-census/lib/core/types/primitives";
+} from "ui-census";
 
 const createDOMCensusObjectFactory = <
   Selector extends SelectorFunction<Element>,

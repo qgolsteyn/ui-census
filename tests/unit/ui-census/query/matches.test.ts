@@ -1,4 +1,4 @@
-import { matches } from "ui-census/src/core/query/queries";
+import { matches } from "ui-census/src/query/queries";
 
 describe("matches", () => {
   test("it handles an empty array", () => {
